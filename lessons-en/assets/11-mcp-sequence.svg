@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 610" width="960" height="610">
+  <rect x="0" y="0" width="960" height="610" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">MCP stdio JSON-RPC sequence: handshake → discovery → call</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- the two lifelines -->
+  <rect x="120" y="76" width="240" height="40" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="240" y="101" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">MCP Client (host process)</text>
+  <rect x="600" y="76" width="240" height="40" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="720" y="101" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#4c1d95">MCP Server (external process)</text>
+
+  <line x1="240" y1="116" x2="240" y2="402" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="720" y1="116" x2="720" y2="402" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- phase labels -->
+  <text x="40" y="150" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">① Handshake</text>
+  <text x="40" y="270" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">② Discovery</text>
+  <text x="40" y="350" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">③ Tool call</text>
+
+  <!-- initialize -->
+  <text x="480" y="144" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">initialize (protocolVersion · clientInfo)</text>
+  <line x1="248" y1="156" x2="712" y2="156" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="732" y="148" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">incrementing ids pair responses</text>
+
+  <!-- result -->
+  <text x="480" y="184" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">result (serverInfo · capabilities)</text>
+  <line x1="712" y1="196" x2="248" y2="196" stroke="#475569" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-gray)"/>
+
+  <!-- notifications/initialized (dashed, no response) -->
+  <text x="480" y="224" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">notifications/initialized (notification, no reply)</text>
+  <line x1="248" y1="236" x2="712" y2="236" stroke="#475569" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-gray)"/>
+
+  <!-- tools/list -->
+  <text x="480" y="264" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">tools/list</text>
+  <line x1="248" y1="276" x2="712" y2="276" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- tools[] -->
+  <text x="480" y="304" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">result: tools[] (name · description · inputSchema)</text>
+  <line x1="712" y1="316" x2="248" y2="316" stroke="#475569" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-gray)"/>
+
+  <!-- tools/call -->
+  <text x="480" y="344" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">tools/call (name, arguments)</text>
+  <line x1="248" y1="356" x2="712" y2="356" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- content / isError -->
+  <text x="480" y="384" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">result: content[] · isError</text>
+  <line x1="712" y1="396" x2="248" y2="396" stroke="#475569" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-gray)"/>
+
+  <!-- server crash marker -->
+  <line x1="708" y1="402" x2="732" y2="426" stroke="#dc2626" stroke-width="2"/>
+  <line x1="708" y1="426" x2="732" y2="402" stroke="#dc2626" stroke-width="2"/>
+  <text x="744" y="420" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#dc2626">crash / exit</text>
+
+  <text x="744" y="306" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">protocol on stdout, logs on stderr</text>
+
+  <!-- timeout (amber) -->
+  <rect x="280" y="436" width="400" height="56" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="480" y="460" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#92400e">15s timeout per request: reject &amp; drop from pending</text>
+  <text x="480" y="480" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#b45309">a tool call that never returns = a hung Agent</text>
+
+  <!-- server exit (red) -->
+  <rect x="280" y="508" width="400" height="56" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="480" y="532" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#7f1d1d">server exit (stdout closes) → failAll()</text>
+  <text x="480" y="552" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#ef4444">all pending requests fail at once; new ones short-circuit</text>
+
+  <text x="32" y="586" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 11 · MCP stdio sequence (src/extensions/mcp.ts · test/fixtures/mcp-echo-server.ts)</text>
+</svg>

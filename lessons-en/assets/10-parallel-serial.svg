@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 430" width="860" height="430">
+<defs>
+<marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/></marker>
+<marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker>
+<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/></marker>
+<marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706"/></marker>
+<marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker>
+</defs>
+<rect x="0" y="0" width="860" height="430" fill="#ffffff"/>
+<text x="32" y="48" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Serial vs parallel subtasks: fork–join timelines (teaching version runs serially)</text>
+<text x="70" y="92" text-anchor="start" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#334155" font-weight="bold">Serial</text>
+<rect x="150" y="80" width="150" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="225.0" y="107.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#1e3a8a" font-weight="bold">Main Agent</text>
+<rect x="360" y="80" width="150" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="435.0" y="98.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#14532d" font-weight="bold">Subtask A</text>
+<text x="435.0" y="119.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#22c55e">t0 → t1</text>
+<rect x="570" y="80" width="150" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="645.0" y="98.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#14532d" font-weight="bold">Subtask B</text>
+<text x="645.0" y="119.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#22c55e">t1 → t2</text>
+<rect x="760" y="80" width="70" height="44" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="795.0" y="107.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#334155" font-weight="bold">Join</text>
+<line x1="300" y1="102" x2="354" y2="102" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="510" y1="102" x2="564" y2="102" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="720" y1="102" x2="754" y2="102" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="150" y1="150" x2="830" y2="150" stroke="#94a3b8" stroke-width="1"/>
+<text x="150" y="166" text-anchor="start" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8">t0</text>
+<text x="540" y="166" text-anchor="start" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8">t1</text>
+<text x="745" y="166" text-anchor="start" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8">t2</text>
+<text x="430" y="142" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#64748b">total time = A + B</text>
+<text x="70" y="222" text-anchor="start" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#334155" font-weight="bold">Parallel</text>
+<rect x="150" y="210" width="150" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="225.0" y="237.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#1e3a8a" font-weight="bold">Main Agent</text>
+<rect x="360" y="190" width="150" height="40" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="435.0" y="206.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#14532d" font-weight="bold">Subtask A</text>
+<text x="435.0" y="227.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#22c55e">t0 → t1</text>
+<rect x="360" y="242" width="150" height="40" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="435.0" y="258.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#14532d" font-weight="bold">Subtask B</text>
+<text x="435.0" y="279.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#22c55e">t0 → t1'</text>
+<rect x="600" y="210" width="110" height="44" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="655.0" y="237.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#334155" font-weight="bold">join</text>
+<line x1="300" y1="210" x2="354" y2="212" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="510" y1="210" x2="594" y2="226" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="150" y1="310" x2="830" y2="310" stroke="#94a3b8" stroke-width="1"/>
+<text x="150" y="326" text-anchor="start" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8">t0</text>
+<text x="540" y="326" text-anchor="start" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8">t1</text>
+<text x="745" y="326" text-anchor="start" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8">t2</text>
+<text x="430" y="300" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#64748b">total time = max(A, B)</text>
+<rect x="60" y="348" width="740" height="60" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="430.0" y="372.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#334155">Parallel requires independent subtasks (read-only investigations); the teaching loop awaits a turn's tool_calls in order</text>
+<text x="430.0" y="392.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#334155">Parallelism is a loop-level evolution: fire the turn's task calls with Promise.all — the delegation protocol is unchanged</text>
+<text x="32" y="414" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 10 · Serial &amp; parallel (5.4)</text>
+</svg>

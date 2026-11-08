@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" width="920" height="520">
+  <rect x="0" y="0" width="920" height="520" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Symlink: the lexical path sees the name, realpath sees the real identity</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <!-- workspace -->
+  <rect x="32" y="84" width="300" height="132" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="182" y="108" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#334155">Workspace /ws</text>
+  <rect x="64" y="122" width="236" height="54" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="182" y="144" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#1e3a8a">innocent.txt</text>
+  <text x="182" y="165" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">actually a symlink</text>
+  <text x="182" y="200" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">harmless by name alone</text>
+
+  <!-- external real file -->
+  <rect x="620" y="76" width="268" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="754" y="100" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#7f1d1d">/home/other/secret.txt</text>
+  <text x="754" y="122" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#dc2626">the real data lives here</text>
+
+  <!-- symlink pointing (purple dashed) -->
+  <path d="M 302 152 L 612 112" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#arrow-purple)"/>
+  <text x="455" y="116" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#7c3aed">link content = target path</text>
+
+  <!-- transition note -->
+  <text x="460" y="238" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#334155">Measure /ws/innocent.txt with two rulers:</text>
+
+  <!-- ruler 1: lexical check -->
+  <rect x="32" y="252" width="856" height="72" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="56" y="282" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#334155">Ruler 1 · Lexical check</text>
+  <text x="56" y="306" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">string prefix only</text>
+  <rect x="520" y="264" width="344" height="48" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="692" y="284" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#14532d">/ws/innocent.txt → inside /ws</text>
+  <text x="692" y="304" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#16a34a">✓ Allowed — but fooled; the link is invisible</text>
+
+  <!-- ruler 2: realpath -->
+  <rect x="32" y="336" width="856" height="72" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="56" y="366" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#334155">Ruler 2 · realpath</text>
+  <text x="56" y="390" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">follows the link to the real location first</text>
+  <rect x="520" y="348" width="344" height="48" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+  <text x="692" y="368" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#7f1d1d">→ /home/other/secret.txt</text>
+  <text x="692" y="388" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#dc2626">✗ Outside — blocked</text>
+
+  <!-- conclusion bar -->
+  <rect x="32" y="430" width="856" height="48" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="460" y="450" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">So the boundary defense cannot trust lexical paths alone — the last check must resolve the real path</text>
+  <text x="460" y="469" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">It is exactly the third check (realpath) in Chapter 3's workspace.ts</text>
+
+  <text x="32" y="504" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 03 · Symlinks and realpath (2.2.1)</text>
+</svg>

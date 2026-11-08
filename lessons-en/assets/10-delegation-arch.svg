@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" width="960" height="640">
+  <rect x="0" y="0" width="960" height="640" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Delegation architecture: build main Agent dispatches read-only subagents via task</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- main Agent build -->
+  <rect x="330" y="80" width="340" height="110" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="500" y="105" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">Main Agent: build (only writable role)</text>
+  <text x="500" y="130" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">allowedTools: read glob grep write edit</text>
+  <text x="500" y="150" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">apply_patch shell test + task</text>
+  <text x="500" y="172" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">systemPrompt: build role · maxSteps 24</text>
+
+  <!-- delegation boundary note -->
+  <rect x="700" y="80" width="230" height="110" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="815" y="105" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#334155">Delegation boundary</text>
+  <text x="815" y="128" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">The child never sees the parent chat</text>
+  <text x="815" y="146" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">(prompt must be self-contained)</text>
+  <text x="815" y="164" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">failure → ok:false; parent task continues</text>
+
+  <!-- parent session -->
+  <rect x="60" y="250" width="220" height="70" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="170" y="275" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#4c1d95">Parent session</text>
+  <text x="170" y="296" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#8b5cf6">agent="build"</text>
+  <text x="170" y="312" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#8b5cf6">status follows main task final state</text>
+
+  <!-- task tool -->
+  <rect x="390" y="250" width="220" height="76" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="500" y="274" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">task tool · risk=medium</text>
+  <text x="500" y="296" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#d97706">enum: plan, explore (all read-only)</text>
+  <text x="500" y="314" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#d97706">injects child persistence + role gate</text>
+
+  <!-- build ↔ task arrows -->
+  <line x1="480" y1="190" x2="480" y2="250" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="468" y="224" text-anchor="end" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">agent + prompt</text>
+  <line x1="545" y1="250" x2="545" y2="190" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="557" y="212" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">ToolResult: finalText conclusion only</text>
+
+  <!-- task → plan / explore -->
+  <path d="M 440 326 L 440 360 L 250 360 L 250 390" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="345" y="352" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">createSession(plan)</text>
+  <path d="M 560 326 L 560 360 L 710 360 L 710 390" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="635" y="352" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">createSession(explore)</text>
+
+  <!-- child Agent plan -->
+  <rect x="100" y="390" width="300" height="110" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="250" y="415" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">Child Agent: plan (read-only)</text>
+  <text x="250" y="440" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">allowedTools: read / glob / grep</text>
+  <text x="250" y="460" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">own systemPrompt · maxSteps 12</text>
+  <text x="250" y="480" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">readOnly: true (violations denied by permissions)</text>
+
+  <!-- child Agent explore -->
+  <rect x="560" y="390" width="300" height="110" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="710" y="415" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">Child Agent: explore (read-only)</text>
+  <text x="710" y="440" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">allowedTools: read / glob / grep</text>
+  <text x="710" y="460" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">output format: path:line - description</text>
+  <text x="710" y="480" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">maxSteps 8 · readOnly: true</text>
+
+  <!-- child sessions -->
+  <rect x="100" y="540" width="300" height="70" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="250" y="565" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#4c1d95">Child session · agent="plan"</text>
+  <text x="250" y="586" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#8b5cf6">investigation stored separately · replayable history</text>
+  <text x="250" y="602" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#8b5cf6">parentSessionId → parent session</text>
+
+  <rect x="560" y="540" width="300" height="70" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="710" y="565" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#4c1d95">Child session · agent="explore"</text>
+  <text x="710" y="586" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#8b5cf6">investigation stored separately · replayable history</text>
+  <text x="710" y="602" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#8b5cf6">parentSessionId → parent session</text>
+
+  <!-- child Agent → child session -->
+  <line x1="250" y1="500" x2="250" y2="540" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="262" y="524" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">stored separately</text>
+  <line x1="710" y1="500" x2="710" y2="540" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="722" y="524" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">stored separately</text>
+
+  <!-- child session → parent session (parentSessionId dashed) -->
+  <path d="M 100 575 L 70 575 L 70 350 L 170 350 L 170 320" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-gray)"/>
+  <text x="120" y="342" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#7c3aed">parentSessionId link</text>
+
+  <!-- bottom note -->
+  <text x="480" y="628" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">Final decisions belong to the main Agent: child conclusions enter the parent context; writes run serially in the parent</text>
+
+  <text x="32" y="628" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 10 · Delegation architecture (src/tools/task.ts)</text>
+</svg>

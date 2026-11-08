@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" width="960" height="660">
+  <rect x="0" y="0" width="960" height="660" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Schema migrations: migrate on open, catch up by version</text>
+  <text x="32" y="74" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">the last step of openDatabase: migrate(db) — empty, old, or latest, opening guarantees the newest structure</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- ===== migration version nodes ===== -->
+  <rect x="80" y="110" width="240" height="140" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="200" y="136" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">v1 · init-core-tables</text>
+  <text x="200" y="162" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">project / session / message</text>
+  <text x="200" y="180" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">tool_call / event</text>
+  <text x="200" y="198" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">3 idx_* indexes + UNIQUE(seq)</text>
+  <text x="200" y="216" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">(the 6th table arrives in v2)</text>
+
+  <rect x="400" y="110" width="240" height="140" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="520" y="136" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">v2 · permission-request</text>
+  <text x="520" y="162" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">+ permission_request table</text>
+  <text x="520" y="180" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">+ idx_permission_session</text>
+  <text x="520" y="198" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">permission audit persisted (table 6)</text>
+  <text x="520" y="216" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">a real-world sample migration</text>
+
+  <rect x="720" y="110" width="180" height="140" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="810" y="136" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#334155">vN (future)</text>
+  <text x="810" y="162" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">add columns / tables first</text>
+  <text x="810" y="180" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">destructive → data migration</text>
+  <text x="810" y="198" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">one transaction per version</text>
+  <text x="810" y="216" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">DDL + registration in one tx</text>
+
+  <!-- ===== timeline ===== -->
+  <line x1="200" y1="250" x2="200" y2="300" stroke="#475569" stroke-width="1.5"/>
+  <line x1="520" y1="250" x2="520" y2="300" stroke="#475569" stroke-width="1.5"/>
+  <line x1="810" y1="250" x2="810" y2="300" stroke="#475569" stroke-width="1.5"/>
+  <text x="660" y="290" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">applied in ascending version order</text>
+  <line x1="60" y1="300" x2="900" y2="300" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <circle cx="200" cy="300" r="4" fill="#7c3aed"/>
+  <circle cx="520" cy="300" r="4" fill="#7c3aed"/>
+  <circle cx="810" cy="300" r="4" fill="#7c3aed"/>
+
+  <!-- ===== registration table ===== -->
+  <line x1="480" y1="306" x2="480" y2="378" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="494" y="336" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">every version: DDL + INSERT registration in one transaction</text>
+
+  <rect x="260" y="390" width="440" height="128" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="480" y="414" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">schema_migrations (the registration table)</text>
+  <line x1="272" y1="424" x2="688" y2="424" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="480" y="444" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#94a3b8">version&#160;&#160;name&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;applied_at</text>
+  <text x="480" y="464" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#6d28d9">1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;init-core-tables&#160;&#160;&#160;&#160;2025-06-01T08:00:00.000Z</text>
+  <text x="480" y="484" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#6d28d9">2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;permission-request&#160;&#160;2025-06-02T09:30:00.000Z</text>
+  <text x="480" y="504" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">MAX(version) = databaseVersion(db) → current = 2</text>
+
+  <!-- ===== three properties ===== -->
+  <rect x="40" y="548" width="280" height="72" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="180" y="574" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#14532d">empty database → straight to latest</text>
+  <text x="180" y="596" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#166534">applied is empty: v1 then v2 run in turn</text>
+
+  <rect x="340" y="548" width="280" height="72" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="480" y="574" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#1e3a8a">old database → catch up by version</text>
+  <text x="480" y="596" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">applied={1}: skip v1, apply only v2</text>
+
+  <rect x="640" y="548" width="280" height="72" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="780" y="574" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#78350f">idempotent → repeat migrate is a no-op</text>
+  <text x="780" y="596" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#b45309">registered → continue skips them</text>
+
+  <text x="32" y="648" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 07 · Migration timeline (5.5)</text>
+</svg>

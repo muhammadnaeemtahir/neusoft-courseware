@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 536" width="920" height="536">
+  <rect x="0" y="0" width="920" height="536" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Defense in depth: three independent layers — any one of them stops the attack</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- Layer 1: allowedTools (model layer) -->
+  <rect x="32" y="110" width="856" height="88" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="56" y="136" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#334155">Layer 1 · allowedTools (model layer)</text>
+  <text x="56" y="160" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">toModelTools allowlist: the request's tools array has no write at all — the model can't see it</text>
+  <text x="56" y="184" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#b45309">But invisible ≠ uncallable: the model can force-call from training memory; this layer can't stop it — the attack pierces through</text>
+
+  <!-- Layer 2: the readOnlyAgents list (runtime layer) -->
+  <rect x="32" y="214" width="856" height="88" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="56" y="240" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#7f1d1d">Layer 2 · readOnlyAgents list (runtime layer)</text>
+  <text x="56" y="264" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#7f1d1d">plan/explore/review roles: any risk ≠ low means deny — forced calls run into it too</text>
+  <text x="56" y="288" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" font-weight="bold" fill="#dc2626">✗ Attack blocked here: write risk high → deny (test asserts evil.ts doesn't exist)</text>
+
+  <!-- Layer 3: the subagent tool list (structural layer) -->
+  <rect x="32" y="318" width="856" height="88" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="56" y="344" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">Layer 3 · subagent tool list (structural layer)</text>
+  <text x="56" y="368" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">the tool list handed to the subagent by task has no write — nested delegation can't even be constructed</text>
+  <text x="56" y="392" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#1e3a8a">this layer doesn't "block" — the entry point structurally doesn't exist</text>
+
+  <!-- Attack arrow: drawn across the three layers — pierces layer 1 from the top, stopped at layer 2 -->
+  <text x="780" y="72" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#dc2626">Attack: the model force-calls write</text>
+  <line x1="780" y1="80" x2="780" y2="252" stroke="#dc2626" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+  <text x="780" y="296" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="34" font-weight="bold" fill="#dc2626">✗</text>
+
+  <!-- Conclusion bar -->
+  <rect x="32" y="430" width="856" height="56" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="460" y="454" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">Three independent layers, each judging alone: the attack must get past every layer to succeed</text>
+  <text x="460" y="476" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#16a34a">any layer with a hole or bypassed, the rest still backstop — that is defense in depth (5.4)</text>
+
+  <text x="32" y="518" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 06 · Defense in depth (2.2.4)</text>
+</svg>

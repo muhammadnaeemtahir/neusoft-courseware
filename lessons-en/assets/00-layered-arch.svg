@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 680" width="920" height="680">
+  <rect x="0" y="0" width="920" height="680" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Project layering and dependency direction</text>
+  <text x="460" y="73" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">dependencies point inward only — a domain importing an outer layer is an architecture smell</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- L1 process entry -->
+  <rect x="160" y="86" width="600" height="70" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="460" y="113" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#334155">src/index.ts — process entry</text>
+  <text x="460" y="134" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">argv → main(argv) → process.exitCode (5 lines only)</text>
+
+  <line x1="460" y1="156" x2="460" y2="198" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="468" y="182" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">import</text>
+
+  <!-- L2 adapter -->
+  <rect x="160" y="204" width="600" height="70" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="460" y="231" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">src/cli/ — adapter: the process boundary</text>
+  <text x="460" y="252" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">args.ts parsing · help.ts help text · main.ts orchestration &amp; output protocol</text>
+
+  <line x1="460" y1="274" x2="460" y2="318" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="468" y="300" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">createApp wiring</text>
+
+  <!-- L3 application -->
+  <rect x="160" y="324" width="600" height="70" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="460" y="351" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">src/app/application.ts — application</text>
+  <text x="460" y="372" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">createApp wires 12 modules into a runnable product (integration lands here)</text>
+
+  <line x1="460" y1="394" x2="460" y2="438" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="468" y="420" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">uses domain primitives</text>
+
+  <!-- L4 domain -->
+  <rect x="160" y="444" width="600" height="70" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="460" y="471" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#4c1d95">src/core/ — domain primitives</text>
+  <text x="460" y="492" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#8b5cf6">logger · runid · version · workspace (all dependencies injectable)</text>
+
+  <!-- main bypass straight to core -->
+  <line x1="160" y1="239" x2="120" y2="239" stroke="#475569" stroke-width="1.5"/>
+  <line x1="120" y1="239" x2="120" y2="479" stroke="#475569" stroke-width="1.5"/>
+  <line x1="120" y1="479" x2="154" y2="479" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="196" y="304" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">main → core shortcut</text>
+
+  <!-- test layer -->
+  <line x1="460" y1="552" x2="460" y2="520" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="468" y="540" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">imports the module under test</text>
+
+  <rect x="160" y="552" width="600" height="76" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="460" y="580" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">test/ — test layers &amp; fixtures</text>
+  <text x="460" y="602" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#22c55e">unit tests: pure functions · integration: Bun.spawn asserts the stdout/stderr/exitCode triple</text>
+
+  <!-- dependency-direction ruler on the right -->
+  <line x1="812" y1="116" x2="812" y2="600" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="826" y="358" text-anchor="middle" transform="rotate(90 826 358)" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#94a3b8">dependency direction: outer → inner</text>
+
+  <text x="32" y="664" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · src/{index,cli,core,app} · Figure 0-3</text>
+</svg>

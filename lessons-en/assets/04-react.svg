@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" width="900" height="640">
+  <rect x="0" y="0" width="900" height="640" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">ReAct: the Think → Act → Observe loop</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- hub annotation -->
+  <circle cx="450" cy="345" r="100" fill="#f8fafc" stroke="#64748b" stroke-width="1.2" stroke-dasharray="6 4"/>
+  <text x="450" y="338" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#334155">Model only generates text</text>
+  <text x="450" y="362" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">your program executes it</text>
+
+  <!-- loop arrow: Thought → Action -->
+  <path d="M 545 232 Q 690 272 648 384" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="700" y="300" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">proposes a tool call</text>
+
+  <!-- Action → Observation -->
+  <path d="M 555 455 Q 450 515 345 455" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="450" y="508" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">program executes, brings the result back</text>
+
+  <!-- Observation → Thought -->
+  <path d="M 255 388 Q 205 275 348 236" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="150" y="310" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">result feeds back into history</text>
+
+  <!-- ① Thought (amber) -->
+  <rect x="325" y="148" width="250" height="84" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="450" y="176" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#92400e">① Thought · Think</text>
+  <text x="450" y="200" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#b45309">e.g. where is the login logic?</text>
+  <text x="450" y="222" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#b45309">search for login first</text>
+
+  <!-- ② Action (blue) -->
+  <rect x="555" y="388" width="250" height="84" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="680" y="416" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">② Action · Act</text>
+  <text x="680" y="440" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">e.g. call the grep tool</text>
+  <text x="680" y="462" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">search repo-wide for  "login"</text>
+
+  <!-- ③ Observation (purple) -->
+  <rect x="95" y="388" width="250" height="84" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="220" y="416" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">③ Observation · Observe</text>
+  <text x="220" y="440" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#8b5cf6">e.g. the tool returns</text>
+  <text x="220" y="462" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#8b5cf6">src/auth.ts:12</text>
+
+  <!-- bottom annotation -->
+  <rect x="110" y="540" width="680" height="44" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="450" y="567" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#334155">In code = the Section 5 while loop: request model → run tools → feed result back → request again</text>
+
+  <text x="32" y="614" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 04 · ReAct three-beat loop (2.2.3 / 5.1)</text>
+</svg>

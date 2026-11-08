@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 690" width="960" height="690">
+  <rect x="0" y="0" width="960" height="690" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Five-level permission pipeline: order is priority (stop at first match)</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Entry -->
+  <rect x="330" y="76" width="300" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="480" y="99" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">Tool call request PermissionRequest</text>
+  <text x="480" y="120" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">tool · input · risk · agent</text>
+
+  <line x1="480" y1="132" x2="480" y2="150" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ① dangerous-command floor -->
+  <rect x="310" y="156" width="340" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="480" y="182" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#7f1d1d">① dangerous-command (hardcoded floor)</text>
+  <text x="480" y="202" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">rm -rf / · mkfs · curl | sh · fork bomb …</text>
+  <line x1="650" y1="188" x2="684" y2="188" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="667" y="176" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">hit</text>
+  <rect x="690" y="156" width="230" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="805" y="184" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#7f1d1d">→ deny</text>
+  <text x="805" y="204" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">floor: no config can loosen</text>
+
+  <line x1="480" y1="220" x2="480" y2="242" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="492" y="238" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">no hit</text>
+
+  <!-- ② agent-role -->
+  <rect x="310" y="248" width="340" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="480" y="274" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#7f1d1d">② agent-role (read-only role)</text>
+  <text x="480" y="294" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">plan / explore / review call non-low risk tools</text>
+  <line x1="650" y1="280" x2="684" y2="280" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="667" y="268" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">hit</text>
+  <rect x="690" y="248" width="230" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="805" y="276" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#7f1d1d">→ deny</text>
+  <text x="805" y="296" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">config allow can't override</text>
+
+  <line x1="480" y1="312" x2="480" y2="334" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="492" y="330" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">no hit</text>
+
+  <!-- ③ path-boundary -->
+  <rect x="310" y="340" width="340" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="480" y="366" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#7f1d1d">③ path-boundary (path/patch escape)</text>
+  <text x="480" y="386" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">read/write/edit/apply_patch escape; checked per path</text>
+  <line x1="650" y1="372" x2="684" y2="372" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="667" y="360" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">hit</text>
+  <rect x="690" y="340" width="230" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="805" y="368" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#7f1d1d">→ deny</text>
+  <text x="805" y="388" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">blocks paths and patch escapes</text>
+
+  <line x1="480" y1="404" x2="480" y2="426" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="492" y="422" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">no hit</text>
+
+  <!-- ④ config -->
+  <rect x="310" y="432" width="340" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="480" y="458" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">④ config (explicit modes)</text>
+  <text x="480" y="478" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">looks up modes[tool]: deny / allow / ask</text>
+  <line x1="650" y1="464" x2="684" y2="464" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="667" y="452" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">hit</text>
+  <rect x="690" y="432" width="230" height="64" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="805" y="452" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#dc2626">deny: explicit deny</text>
+  <text x="805" y="472" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#16a34a">allow: explicit allow</text>
+  <text x="805" y="490" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#d97706">ask: user confirms (next figure)</text>
+
+  <line x1="480" y1="496" x2="480" y2="518" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="492" y="514" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">no hit</text>
+
+  <!-- ⑤ risk-default -->
+  <rect x="310" y="524" width="340" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="480" y="550" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">⑤ risk-default (risk fallback)</text>
+  <text x="480" y="570" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">low → allow; medium/high → ask</text>
+  <line x1="650" y1="556" x2="684" y2="556" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <rect x="690" y="524" width="230" height="30" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="805" y="544" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#14532d">low → allow</text>
+  <rect x="690" y="558" width="230" height="30" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="805" y="578" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#78350f">medium / high → ask</text>
+
+  <!-- Left notes: priority semantics -->
+  <rect x="40" y="248" width="230" height="92" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="155" y="274" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#334155">Priority semantics</text>
+  <text x="155" y="296" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">first match stops</text>
+  <text x="155" y="316" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">deny always beats allow</text>
+  <text x="155" y="334" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">hit returns; rest not evaluated</text>
+  <line x1="270" y1="294" x2="304" y2="294" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- Left notes: unknown tools -->
+  <rect x="40" y="524" width="230" height="64" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="155" y="546" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#334155">Unknown-tool fallback</text>
+  <text x="155" y="566" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">resolveRisk miss → assume high</text>
+  <text x="155" y="584" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">fail-closed: strict when unsure</text>
+  <line x1="270" y1="556" x2="304" y2="556" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- Emphasis bar -->
+  <rect x="40" y="612" width="880" height="40" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="480" y="637" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#78350f">Order is priority: config allow can't override an earlier deny — deny-class rules (①②③) always run before ④ config</text>
+
+  <text x="32" y="674" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 06 · src/permission/evaluate.ts · policy.ts (Figure 6-1)</text>
+</svg>

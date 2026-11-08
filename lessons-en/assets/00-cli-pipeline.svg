@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 680" width="920" height="680">
+  <rect x="0" y="0" width="920" height="680" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">CLI request pipeline: from argv to exit code</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- argv (input data) -->
+  <rect x="48" y="84" width="160" height="56" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="128" y="107" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#4c1d95">process.argv</text>
+  <text x="128" y="128" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#8b5cf6">command-line args</text>
+
+  <line x1="208" y1="112" x2="294" y2="112" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- parseArgs -->
+  <rect x="300" y="84" width="240" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="420" y="107" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">parseArgs(argv)</text>
+  <text x="420" y="128" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">discriminated union · 7 branches</text>
+
+  <!-- success branch: down to command dispatch -->
+  <line x1="420" y1="140" x2="420" y2="194" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="428" y="172" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">ok: true</text>
+
+  <!-- failure branch: right, then down to exit 2 -->
+  <line x1="540" y1="112" x2="810" y2="112" stroke="#475569" stroke-width="1.5"/>
+  <line x1="810" y1="112" x2="810" y2="174" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="675" y="104" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">ok: false</text>
+
+  <!-- usage error (red) -->
+  <rect x="720" y="180" width="180" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="810" y="207" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">stderr: error + help</text>
+  <text x="810" y="228" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">usageError · usage error</text>
+
+  <!-- command dispatch -->
+  <rect x="300" y="200" width="240" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="420" y="227" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">main() dispatches commands</text>
+  <text x="420" y="248" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">branches on parsed.command</text>
+
+  <!-- six commands -->
+  <rect x="24" y="320" width="80" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="64" y="347" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">help</text>
+  <text x="64" y="368" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">help text</text>
+
+  <rect x="116" y="320" width="92" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="162" y="347" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">version</text>
+  <text x="162" y="368" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">version</text>
+
+  <rect x="220" y="320" width="72" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="256" y="347" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">run</text>
+  <text x="256" y="368" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">run task</text>
+
+  <rect x="304" y="320" width="124" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="366" y="347" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">session-list</text>
+  <text x="366" y="368" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">list sessions</text>
+
+  <rect x="440" y="320" width="124" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="502" y="347" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">session-show</text>
+  <text x="502" y="368" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">show session</text>
+
+  <rect x="576" y="320" width="124" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="638" y="347" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">config-debug</text>
+  <text x="638" y="368" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">config debug</text>
+
+  <!-- converge into execution -->
+  <line x1="64" y1="384" x2="64" y2="414" stroke="#475569" stroke-width="1.5"/>
+  <line x1="162" y1="384" x2="162" y2="414" stroke="#475569" stroke-width="1.5"/>
+  <line x1="256" y1="384" x2="256" y2="414" stroke="#475569" stroke-width="1.5"/>
+  <line x1="366" y1="384" x2="366" y2="414" stroke="#475569" stroke-width="1.5"/>
+  <line x1="502" y1="384" x2="502" y2="414" stroke="#475569" stroke-width="1.5"/>
+  <line x1="638" y1="384" x2="638" y2="414" stroke="#475569" stroke-width="1.5"/>
+  <line x1="64" y1="414" x2="638" y2="414" stroke="#475569" stroke-width="1.5"/>
+  <line x1="351" y1="414" x2="351" y2="434" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- execution -->
+  <rect x="191" y="440" width="320" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="351" y="467" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">Execute command · emit output protocol</text>
+  <text x="351" y="488" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">results to stdout · logs to stderr</text>
+
+  <!-- exit codes 0 / 1 -->
+  <line x1="210" y1="504" x2="210" y2="554" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="218" y="532" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">normal completion</text>
+  <line x1="450" y1="504" x2="450" y2="554" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="458" y="532" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">run failed / session missing</text>
+
+  <rect x="110" y="560" width="200" height="64" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="210" y="587" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">exit 0 · success</text>
+  <text x="210" y="608" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#22c55e">EXIT_CODES.ok = 0</text>
+
+  <rect x="340" y="560" width="220" height="64" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="450" y="587" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">exit 1 · runtime error</text>
+  <text x="450" y="608" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#f59e0b">EXIT_CODES.runtimeError</text>
+
+  <rect x="720" y="560" width="180" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="810" y="587" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">exit 2 · usage error</text>
+  <text x="810" y="608" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">EXIT_CODES.usageError</text>
+
+  <!-- failure path drops straight to exit 2 -->
+  <line x1="810" y1="244" x2="810" y2="554" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <text x="32" y="664" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · src/cli/{args,main}.ts · Figure 0-1</text>
+</svg>

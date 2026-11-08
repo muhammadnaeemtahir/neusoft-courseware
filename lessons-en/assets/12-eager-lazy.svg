@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470">
+  <rect x="0" y="0" width="960" height="470" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Eager vs lazy: the fundamental difference between Promise and Effect</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Left: Promise eager -->
+  <rect x="32" y="84" width="430" height="266" rx="10" fill="none" stroke="#d97706" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="247" y="112" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#78350f">Promise = eager</text>
+
+  <rect x="56" y="128" width="382" height="40" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="72" y="153" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#334155">const p = fetch(url)</text>
+
+  <text x="56" y="200" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#b45309">🚀 The request fires the moment this line runs</text>
+  <text x="56" y="230" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#78350f">🔥 p in hand = the dish being cooked (IO in flight)</text>
+  <text x="56" y="262" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">Compose a hundred Promises? A hundred requests already sent</text>
+  <text x="56" y="286" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">In-flight requests cannot be paused or re-run as-is</text>
+
+  <!-- Right: Effect lazy -->
+  <rect x="498" y="84" width="430" height="266" rx="10" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="713" y="112" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#14532d">Effect = lazy</text>
+
+  <rect x="522" y="128" width="382" height="40" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="538" y="153" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#334155">const eff = fetchAsEffect(url)</text>
+
+  <text x="522" y="200" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">📄 Just a recipe: zero IO right now</text>
+
+  <line x1="713" y1="216" x2="713" y2="252" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="727" y="230" text-anchor="start" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="bold" fill="#b45309">runPromise()</text>
+  <text x="727" y="248" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#d97706">the only firing point 🔥</text>
+
+  <rect x="613" y="258" width="200" height="48" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="713" y="278" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#14532d">This actually executes</text>
+  <text x="713" y="296" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#16a34a">IO happens only on the run chain</text>
+
+  <!-- Bottom comparison bars -->
+  <rect x="32" y="372" width="430" height="60" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="247" y="396" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#78350f">Eager: you get a run already in progress</text>
+  <text x="247" y="418" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#b45309">Constructing is executing; description and run are one</text>
+
+  <rect x="498" y="372" width="430" height="60" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="713" y="396" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#14532d">Lazy: you get a description</text>
+  <text x="713" y="418" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#16a34a">Composable / re-runnable / swappable deps</text>
+
+  <text x="32" y="454" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 12 · Prerequisites · Eager vs lazy (2.2.2 · src/effect-lab/mini-effect.ts)</text>
+</svg>

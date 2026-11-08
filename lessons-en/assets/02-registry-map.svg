@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 430" width="860" height="430">
+<defs>
+<marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/></marker>
+<marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker>
+<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/></marker>
+<marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706"/></marker>
+<marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker>
+</defs>
+<rect x="0" y="0" width="860" height="430" fill="#ffffff"/>
+<text x="32" y="48" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Registry: registration + dependency injection + audit (src/tools/registry.ts)</text>
+<rect x="60" y="100" width="170" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="145.0" y="124.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#1e3a8a" font-weight="bold">read tool</text>
+<text x="145.0" y="145.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#3b82f6">register()</text>
+<rect x="60" y="180" width="170" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="145.0" y="204.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#1e3a8a" font-weight="bold">shell tool</text>
+<text x="145.0" y="225.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#3b82f6">register()</text>
+<rect x="60" y="260" width="170" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="145.0" y="284.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#1e3a8a" font-weight="bold">task tool</text>
+<text x="145.0" y="305.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#3b82f6">register()</text>
+<rect x="330" y="140" width="240" height="130" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="450.0" y="199.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#4c1d95" font-weight="bold">Registry</text>
+<text x="450.0" y="218.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#8b5cf6">Map&lt;name, ToolDefinition&gt;</text>
+<text x="450.0" y="233.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#8b5cf6">register / get / list / has</text>
+<line x1="230" y1="128" x2="324" y2="170" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="230" y1="208" x2="324" y2="208" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="230" y1="288" x2="324" y2="244" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<rect x="640" y="90" width="190" height="60" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="735.0" y="116.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#334155" font-weight="bold">What the model sees</text>
+<text x="735.0" y="137.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#64748b">list(): name/description/params</text>
+<line x1="570" y1="140" x2="634" y2="122" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<rect x="640" y="200" width="190" height="60" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="735.0" y="226.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#14532d" font-weight="bold">execute → ToolResult</text>
+<text x="735.0" y="247.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#22c55e">call(name, input, ctx)</text>
+<line x1="570" y1="230" x2="634" y2="228" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+<rect x="330" y="330" width="240" height="56" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+<text x="450.0" y="354.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#78350f" font-weight="bold">ctx: injected deps</text>
+<text x="450.0" y="375.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#f59e0b">workspace / signal via parameters</text>
+<line x1="450" y1="330" x2="450" y2="276" stroke="#d97706" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+<text x="460" y="306" text-anchor="start" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">tools never import globals</text>
+<rect x="620" y="300" width="220" height="72" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="730.0" y="321.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#334155">Names: [a-z0-9_] only</text>
+<text x="730.0" y="340.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#334155">duplicate registration throws</text>
+<text x="730.0" y="359.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#334155">ToolEvent notifies listeners</text>
+<text x="32" y="414" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 02 · Registry &amp; DI (5.4)</text>
+</svg>

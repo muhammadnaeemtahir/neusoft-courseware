@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 352" width="920" height="352">
+  <rect x="0" y="0" width="920" height="352" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Secret injection chain: config stores only the variable name, the secret never touches disk</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- (1) developer terminal -->
+  <rect x="32" y="84" width="198" height="116" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="131" y="108" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#334155">① Developer terminal</text>
+  <text x="131" y="132" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#0f172a">export OPENCODE_LAB_</text>
+  <text x="131" y="150" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#0f172a">API_KEY=sk-xxx</text>
+  <text x="131" y="180" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">inherited by child processes</text>
+
+  <!-- (2) process environment (memory) -->
+  <rect x="251" y="84" width="198" height="116" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="350" y="108" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">② Process env (memory)</text>
+  <text x="350" y="132" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#6d28d9">process.env</text>
+  <text x="350" y="158" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#7c3aed">the secret itself lives here</text>
+  <rect x="312" y="170" width="76" height="20" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+  <text x="350" y="184" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#dc2626">not on disk</text>
+
+  <!-- (3) config file stores the name only -->
+  <rect x="470" y="84" width="198" height="116" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="569" y="108" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#14532d">③ Config file</text>
+  <text x="569" y="132" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#166534">"apiKeyEnv":</text>
+  <text x="569" y="150" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#166534">"OPENCODE_LAB_API_KEY"</text>
+  <text x="569" y="180" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#16a34a">✓ name only, safe to share</text>
+
+  <!-- (4) runtime resolves the secret -->
+  <rect x="689" y="84" width="198" height="116" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="788" y="108" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">④ Code at runtime</text>
+  <text x="788" y="132" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#1e40af">process.env[apiKeyEnv]</text>
+  <text x="788" y="158" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">looks up the real value by name</text>
+  <text x="788" y="180" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">secret used only in memory</text>
+
+  <!-- flow arrows and labels -->
+  <line x1="232" y1="142" x2="246" y2="142" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="451" y1="142" x2="465" y2="142" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="670" y1="142" x2="684" y2="142" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="240" y="220" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">inherited at startup</text>
+  <text x="458" y="220" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">name only</text>
+  <text x="677" y="220" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">read by name</text>
+
+  <!-- anti-pattern -->
+  <rect x="32" y="240" width="856" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="56" y="277" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#7f1d1d">✗ Anti-pattern</text>
+  <rect x="200" y="256" width="156" height="32" rx="6" fill="#ffffff" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="278" y="277" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#dc2626">secret in config file</text>
+  <line x1="360" y1="272" x2="380" y2="272" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+  <rect x="384" y="256" width="140" height="32" rx="6" fill="#ffffff" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="454" y="277" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#dc2626">committed to Git</text>
+  <line x1="528" y1="272" x2="548" y2="272" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+  <rect x="552" y="256" width="172" height="32" rx="6" fill="#ffffff" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="638" y="277" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#dc2626">deleted later, still in Git</text>
+  <line x1="728" y1="272" x2="748" y2="272" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+  <rect x="752" y="256" width="118" height="32" rx="6" fill="#dc2626" stroke="#dc2626" stroke-width="1.2"/>
+  <text x="811" y="277" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" font-weight="bold" fill="#ffffff">leaked forever</text>
+
+  <text x="32" y="334" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 05 · Environment variables and secrets (2.2.1)</text>
+</svg>

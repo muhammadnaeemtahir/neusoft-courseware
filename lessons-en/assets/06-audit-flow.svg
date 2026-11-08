@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 672" width="960" height="672">
+  <rect x="0" y="0" width="960" height="672" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">ask resolution and audit dual write: unconfirmed = not allowed</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Entry: evaluation produces ask -->
+  <rect x="360" y="76" width="240" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="480" y="99" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">evaluatePermission</text>
+  <text x="480" y="120" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">returns ask: needs confirmation</text>
+
+  <line x1="480" y1="132" x2="480" y2="150" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- Decision: is there an askHandler? -->
+  <polygon points="480,156 566,210 480,264 394,210" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="480" y="215" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#78350f">askHandler present?</text>
+
+  <!-- No-channel branch (red) -->
+  <line x1="394" y1="212" x2="306" y2="212" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="350" y="202" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">no</text>
+  <rect x="60" y="180" width="240" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="180" y="204" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#7f1d1d">no channel → deny</text>
+  <text x="180" y="226" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">non-interactive: unconfirmed = deny</text>
+
+  <line x1="480" y1="264" x2="480" y2="294" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="492" y="284" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">yes</text>
+
+  <!-- Human verdict -->
+  <rect x="360" y="300" width="240" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="480" y="323" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">askHandler asks the user</text>
+  <text x="480" y="344" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">shows reason and resource</text>
+
+  <!-- Approve (green) -->
+  <line x1="600" y1="328" x2="684" y2="328" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="645" y="318" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">allow</text>
+  <rect x="690" y="300" width="230" height="56" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="805" y="323" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#14532d">Final decision: allow</text>
+  <text x="805" y="344" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#22c55e">reason + "user confirmed"</text>
+
+  <!-- Deny (red) -->
+  <line x1="360" y1="328" x2="276" y2="328" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="315" y="318" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">deny</text>
+  <rect x="40" y="300" width="230" height="56" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="155" y="323" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#7f1d1d">Final decision: deny</text>
+  <text x="155" y="344" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">reason + "unconfirmed, deny"</text>
+
+  <!-- No-channel deny joins the deny path -->
+  <line x1="180" y1="244" x2="158" y2="294" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="192" y="276" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">also treated as deny</text>
+
+  <!-- Converge into the audit -->
+  <line x1="805" y1="356" x2="566" y2="414" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="655" y="378" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">allow</text>
+  <line x1="155" y1="356" x2="394" y2="414" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="315" y="378" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">deny</text>
+
+  <!-- Audit record -->
+  <rect x="310" y="420" width="340" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="480" y="443" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">audit.record logs the decision</text>
+  <text x="480" y="464" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">every final decision lands · no ask state in audit</text>
+
+  <!-- redactSecrets checkpoint (amber) -->
+  <line x1="650" y1="448" x2="684" y2="448" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="667" y="438" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">redact</text>
+  <rect x="690" y="420" width="230" height="56" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="805" y="443" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#78350f">redactSecrets redaction point</text>
+  <text x="805" y="464" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#d97706">redact first, then truncate to 500</text>
+
+  <!-- Dual write to two stores -->
+  <line x1="450" y1="476" x2="306" y2="534" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="510" y1="476" x2="654" y2="534" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="480" y="512" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">dual write</text>
+
+  <rect x="150" y="540" width="300" height="64" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="300" y="562" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">JSONL audit file</text>
+  <text x="300" y="582" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#8b5cf6">.opencode-lab/audit.jsonl</text>
+  <text x="300" y="598" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#8b5cf6">append-only · replayable line by line</text>
+
+  <rect x="510" y="540" width="300" height="64" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="660" y="562" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">session table permission_request</text>
+  <text x="660" y="582" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#8b5cf6">SQLite · keyed by session_id</text>
+  <text x="660" y="598" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#8b5cf6">session show full export</text>
+
+  <text x="330" y="630" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">if the JSONL write fails, degrade silently to in-memory records — never block the Agent</text>
+
+  <text x="32" y="656" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 06 · src/permission/gate.ts · audit.ts (Figure 6-2)</text>
+</svg>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560">
+  <rect x="0" y="0" width="960" height="560" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Rule discovery &amp; injection: scope → sort → budget → system prompt (src/config/rules.ts)</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- left: directory tree panel -->
+  <rect x="40" y="84" width="250" height="204" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="56" y="108" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#334155">Default discovery patterns</text>
+  <text x="56" y="132" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#334155">workspace/</text>
+  <text x="56" y="150" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#334155">├─ AGENTS.md</text>
+  <text x="56" y="168" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#334155">├─ opencode-lab.md</text>
+  <text x="56" y="186" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#334155">└─ .opencode-lab/</text>
+  <text x="56" y="204" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#334155">   └─ rules/*.md</text>
+  <text x="56" y="230" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">root rules: scope="" depth=0, global</text>
+  <text x="56" y="250" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">subdir rules carry scope / depth</text>
+  <text x="56" y="270" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">empty skipped · node_modules excluded</text>
+
+  <line x1="290" y1="116" x2="324" y2="116" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="324" y="106" text-anchor="end" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">Glob scan</text>
+
+  <!-- main line: discoverRules -->
+  <rect x="330" y="84" width="300" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="480" y="108" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">discoverRules</text>
+  <text x="480" y="130" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">Bun.Glob scan · dedupe · skip bad patterns</text>
+
+  <line x1="480" y1="148" x2="480" y2="182" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <rect x="330" y="188" width="300" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="480" y="212" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">Deterministic sort</text>
+  <text x="480" y="234" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">depth ascending · alphabetical by path</text>
+
+  <line x1="480" y1="252" x2="480" y2="286" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <rect x="330" y="292" width="300" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="480" y="316" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">rulesToSystemSection</text>
+  <text x="480" y="338" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">maxChars = 6000-character budget</text>
+
+  <line x1="480" y1="356" x2="480" y2="390" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <rect x="330" y="396" width="300" height="64" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="480" y="420" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#14532d">Inject into system prompt</text>
+  <text x="480" y="442" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#22c55e">base template + rules section (source headers)</text>
+
+  <!-- top right: injection format -->
+  <rect x="680" y="84" width="240" height="84" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="800" y="106" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#334155">Injection format (source → prompt)</text>
+  <text x="800" y="128" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">root rule: ## title (path)</text>
+  <text x="800" y="150" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">subdirectory: ## [scope: dir] title</text>
+
+  <!-- mid right: over-budget truncation branch (amber) -->
+  <line x1="630" y1="324" x2="684" y2="324" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="660" y="314" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">over budget</text>
+
+  <rect x="690" y="292" width="230" height="96" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="805" y="316" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#78350f">Over-budget truncation</text>
+  <text x="805" y="338" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#d97706">no silent drops: hints the follow-up</text>
+  <text x="805" y="360" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#d97706">hint: use read to view the original</text>
+
+  <!-- bottom note -->
+  <rect x="40" y="488" width="880" height="40" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="480" y="513" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#334155">Rules are prompts, not commands: hard constraints go to the Chapter 6 permission layer (prompt guides, permission layer backstops)</text>
+
+  <text x="32" y="544" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 05 · Rule discovery (5.4)</text>
+</svg>

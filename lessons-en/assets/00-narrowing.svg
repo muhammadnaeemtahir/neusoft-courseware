@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 550" width="920" height="550">
+  <rect x="0" y="0" width="920" height="550" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Type narrowing: an if check rules out branches automatically</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- union type (left) -->
+  <rect x="40" y="92" width="290" height="252" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="185" y="118" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#334155">Union type Result: two variants</text>
+  <text x="185" y="141" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#475569">= {ok:true,…} | {ok:false,…}</text>
+
+  <rect x="64" y="156" width="242" height="76" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="185" y="184" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#1e3a8a">{ ok: true,  prompt: string }</text>
+  <text x="185" y="208" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b82f6">success variant: has prompt</text>
+
+  <rect x="64" y="248" width="242" height="76" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="185" y="276" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#4c1d95">{ ok: false, error: string }</text>
+  <text x="185" y="300" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#8b5cf6">failure variant: has error</text>
+
+  <!-- decision diamond (middle) -->
+  <line x1="334" y1="208" x2="354" y2="208" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <polygon points="460,136 560,208 460,280 360,208" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="460" y="204" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="14" font-weight="bold" fill="#78350f">if (!r.ok)</text>
+  <text x="460" y="226" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#b45309">compiler auto-narrows</text>
+
+  <!-- true branch (green: inside the if block) -->
+  <polyline points="460,280 460,300 250,300 250,314" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="398" y="292" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#16a34a">condition true</text>
+
+  <rect x="60" y="320" width="380" height="110" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="250" y="348" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#14532d">Inside if: only the failure variant remains</text>
+  <text x="250" y="376" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#14532d"><tspan fill="#14532d">r.error</tspan><tspan fill="#16a34a"> ✅ accessible</tspan></text>
+  <text x="250" y="404" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#14532d"><tspan fill="#7f1d1d">r.prompt</tspan><tspan fill="#dc2626"> ❌ compile error</tspan></text>
+
+  <!-- false/outside branch (red) -->
+  <polyline points="560,208 680,208 680,314" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="622" y="198" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">condition false: outside if</text>
+
+  <rect x="480" y="320" width="400" height="110" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="680" y="348" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#7f1d1d">Outside if: no check — r can still be either</text>
+  <text x="680" y="376" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#334155">the compiler cannot guarantee prompt exists</text>
+  <text x="680" y="404" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#7f1d1d"><tspan fill="#7f1d1d">r.prompt</tspan><tspan fill="#dc2626"> ❌ compile error</tspan></text>
+
+  <!-- bottom takeaway -->
+  <rect x="60" y="456" width="820" height="44" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="470" y="483" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#334155">Narrowing = the compiler rules out impossible worlds; accessing variant-only fields without a check is a compile error</text>
+
+  <text x="32" y="534" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 00 · Type narrowing (2.2.1)</text>
+</svg>

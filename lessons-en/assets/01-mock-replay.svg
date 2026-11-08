@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 360" width="860" height="360">
+<defs>
+<marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/></marker>
+<marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker>
+<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/></marker>
+<marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706"/></marker>
+<marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker>
+</defs>
+<rect x="0" y="0" width="860" height="360" fill="#ffffff"/>
+<text x="32" y="48" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Mock Provider: scripted replay for deterministic tests (providers/mock.ts)</text>
+<rect x="60" y="90" width="330" height="150" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="76" y="114" text-anchor="start" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace" font-size="12" fill="#1e3a8a">const turns = [</text>
+<text x="76" y="134" text-anchor="start" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace" font-size="12" fill="#1e3a8a">  {kind:"text", …},</text>
+<text x="76" y="154" text-anchor="start" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace" font-size="12" fill="#1e3a8a">  {kind:"tool_calls", …},</text>
+<text x="76" y="174" text-anchor="start" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace" font-size="12" fill="#1e3a8a">  {kind:"error", …}</text>
+<text x="76" y="194" text-anchor="start" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace" font-size="12" fill="#1e3a8a">]</text>
+<text x="76" y="214" text-anchor="start" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace" font-size="12" fill="#1e3a8a">createMockProvider(turns)</text>
+<rect x="460" y="100" width="180" height="56" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="550.0" y="124.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#4c1d95" font-weight="bold">cursor, turn by turn</text>
+<text x="550.0" y="145.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#8b5cf6">sliced by chunkSize</text>
+<rect x="690" y="100" width="150" height="56" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="765.0" y="124.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#14532d" font-weight="bold">Same input</text>
+<text x="765.0" y="145.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#22c55e">same output, always</text>
+<line x1="390" y1="128" x2="454" y2="128" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="640" y1="128" x2="684" y2="128" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<rect x="460" y="186" width="380" height="56" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="650.0" y="210.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#334155" font-weight="bold">No network · no key · milliseconds</text>
+<text x="650.0" y="231.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#64748b">same LlmProvider interface as real ones</text>
+<rect x="60" y="270" width="330" height="56" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+<text x="225.0" y="294.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#7f1d1d" font-weight="bold">Real provider, in contrast</text>
+<text x="225.0" y="315.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ef4444">jitter / rate limits / drift — brittle asserts</text>
+<rect x="460" y="270" width="380" height="56" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="650.0" y="302.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#334155">Recording = freezing real responses into turns; replay = a drop-in test double</text>
+<text x="32" y="344" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 01 · Mock &amp; determinism (5.8)</text>
+</svg>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" width="900" height="640">
+  <rect x="0" y="0" width="900" height="640" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Retry decision flow: the withProviderRetry gate logic</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- error event -->
+  <rect x="300" y="90" width="280" height="60" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="440" y="115" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">Upstream yields an error event</text>
+  <text x="440" y="136" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">for await consumes the upstream stream</text>
+
+  <!-- normal end -->
+  <line x1="580" y1="120" x2="634" y2="120" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <rect x="640" y="90" width="200" height="60" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="740" y="115" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">no error → normal end</text>
+  <text x="740" y="136" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#22c55e">all events handed downstream</text>
+
+  <!-- check 1: retryable -->
+  <line x1="440" y1="150" x2="440" y2="194" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <rect x="310" y="200" width="260" height="60" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="440" y="225" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">retryable? (can we retry)</text>
+  <text x="440" y="246" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#f59e0b">401/403 no · 429/5xx/network yes</text>
+
+  <!-- check 2: emitted -->
+  <line x1="440" y1="260" x2="440" y2="304" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="448" y="286" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">yes · retryable</text>
+
+  <rect x="310" y="310" width="260" height="60" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="440" y="335" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">content emitted? (emitted)</text>
+  <text x="440" y="356" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#f59e0b">yielded any non-error event</text>
+
+  <!-- check 3: last attempt -->
+  <line x1="440" y1="370" x2="440" y2="404" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="448" y="392" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">no · nothing emitted</text>
+
+  <rect x="310" y="410" width="260" height="60" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="440" y="435" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">last attempt?</text>
+  <text x="440" y="456" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#f59e0b">attempt === maxAttempts</text>
+
+  <!-- backoff -->
+  <line x1="440" y1="470" x2="440" y2="514" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="448" y="496" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">no</text>
+
+  <rect x="290" y="520" width="260" height="64" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="420" y="545" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">exponential backoff sleep</text>
+  <text x="420" y="568" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#f59e0b">initial × factor^(n-1), maxDelay cap</text>
+
+  <!-- pass-through -->
+  <rect x="590" y="520" width="250" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="715" y="545" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">yield failure passes downstream</text>
+  <text x="715" y="568" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">the caller decides how to show the error</text>
+
+  <!-- three pass-through paths -->
+  <line x1="570" y1="230" x2="780" y2="230" stroke="#475569" stroke-width="1.5"/>
+  <line x1="780" y1="230" x2="780" y2="514" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="675" y="222" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">no · not retryable</text>
+
+  <line x1="570" y1="340" x2="700" y2="340" stroke="#475569" stroke-width="1.5"/>
+  <line x1="700" y1="340" x2="700" y2="514" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="635" y="332" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">yes · content emitted</text>
+
+  <line x1="570" y1="450" x2="620" y2="450" stroke="#475569" stroke-width="1.5"/>
+  <line x1="620" y1="450" x2="620" y2="514" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="574" y="442" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">yes · last attempt</text>
+
+  <!-- retry loop back -->
+  <line x1="290" y1="552" x2="160" y2="552" stroke="#475569" stroke-width="1.5"/>
+  <line x1="160" y1="552" x2="160" y2="120" stroke="#475569" stroke-width="1.5"/>
+  <line x1="160" y1="120" x2="294" y2="120" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="227" y="112" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">retry with attempt + 1</text>
+
+  <text x="32" y="616" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · src/providers/{retry,errors}.ts · Figure 1-3</text>
+</svg>

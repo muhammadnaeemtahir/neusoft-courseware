@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560">
+  <rect x="0" y="0" width="960" height="560" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Message chain: tool_calls and tool results pair one-to-one by toolCallId</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- ① user -->
+  <rect x="60" y="90" width="540" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="330" y="116" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">① role:"user"</text>
+  <text x="330" y="138" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">"echo back ping" (user task)</text>
+
+  <line x1="330" y1="154" x2="330" y2="190" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="342" y="178" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">messages.push</text>
+
+  <!-- ② assistant (parts array) -->
+  <rect x="60" y="190" width="540" height="96" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="330" y="213" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">② role:"assistant" — text and tool calls merged in one parts array</text>
+  <rect x="85" y="226" width="240" height="46" rx="6" fill="#f8fafc" stroke="#64748b" stroke-width="1"/>
+  <text x="205" y="245" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">{ type:"text" }</text>
+  <text x="205" y="263" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">"I'll call the echo tool first"</text>
+  <rect x="345" y="226" width="240" height="46" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="465" y="245" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#78350f">{ type:"tool_call" }</text>
+  <text x="465" y="263" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#d97706">toolCallId:"c1" · echo</text>
+
+  <line x1="330" y1="286" x2="330" y2="330" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- dashed binding: tool_call chip → tool message -->
+  <line x1="465" y1="272" x2="465" y2="330" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-gray)"/>
+  <text x="477" y="306" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#d97706">toolCallId = "c1" binding</text>
+
+  <!-- ③ tool -->
+  <rect x="60" y="330" width="540" height="64" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="330" y="356" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">③ role:"tool" · toolCallId:"c1"</text>
+  <text x="330" y="378" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#22c55e">content:"ping" (each result is its own message)</text>
+
+  <line x1="330" y1="394" x2="330" y2="440" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ④ assistant -->
+  <rect x="60" y="440" width="540" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="330" y="466" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">④ role:"assistant" · parts:[ text ]</text>
+  <text x="330" y="488" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">"done" (the model sees the result and wraps up)</text>
+
+  <!-- protocol notes, right side -->
+  <rect x="640" y="90" width="290" height="414" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="662" y="120" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#334155">Hard protocol rule (Provider enforces)</text>
+  <text x="662" y="152" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">· one assistant message per turn;</text>
+  <text x="662" y="172" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">  text and tool_calls side by side</text>
+  <text x="662" y="204" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">· every tool_call needs exactly one</text>
+  <text x="662" y="224" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">  tool reply with the same toolCallId,</text>
+  <text x="662" y="244" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">  in call order, IDs never reused</text>
+  <text x="662" y="276" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">· denials / bad args also push a</text>
+  <text x="662" y="296" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">  placeholder (isError:true), else</text>
+  <text x="662" y="316" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">  rejected: tool_calls without</text>
+  <text x="662" y="336" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">  tool messages</text>
+  <text x="662" y="368" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">· isError does not affect pairing;</text>
+  <text x="662" y="388" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">  just a semantic hint to the model</text>
+  <text x="662" y="420" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">· complete pairs → history can be</text>
+  <text x="662" y="440" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">  replayed verbatim (Module 07)</text>
+
+  <text x="480" y="532" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">messages replay verbatim: ["user","assistant","tool","assistant"]</text>
+
+  <text x="32" y="532" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 04 · Message chain (5.4)</text>
+</svg>

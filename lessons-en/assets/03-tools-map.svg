@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" width="920" height="560">
+  <rect x="0" y="0" width="920" height="560" fill="#ffffff"/>
+  <text x="32" y="44" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Nine coding tools: risk tiers and the browse → modify → verify loop</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- column heads -->
+  <rect x="48" y="100" width="240" height="36" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="168" y="124" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#14532d">① Browse · risk: low</text>
+
+  <rect x="340" y="100" width="240" height="36" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="460" y="124" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#78350f">② Modify · risk: medium</text>
+
+  <rect x="632" y="100" width="240" height="36" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="752" y="124" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#334155">③ Verify · medium / high</text>
+
+  <line x1="292" y1="118" x2="336" y2="118" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="584" y1="118" x2="628" y2="118" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- column 1: browse (green) -->
+  <rect x="48" y="160" width="240" height="64" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="168" y="185" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">read file excerpts</text>
+  <text x="168" y="206" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#16a34a">line numbers + offset/limit</text>
+
+  <rect x="48" y="244" width="240" height="64" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="168" y="269" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">glob file discovery</text>
+  <text x="168" y="290" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#16a34a">pattern match, skips dep dirs</text>
+
+  <rect x="48" y="328" width="240" height="64" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="168" y="353" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">grep content search</text>
+  <text x="168" y="374" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#16a34a">path:line:content, capped paging</text>
+
+  <!-- column 2: modify (amber) -->
+  <rect x="340" y="160" width="240" height="64" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="460" y="185" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">write whole-file write</text>
+  <text x="460" y="206" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#d97706">create/overwrite, nested mkdir</text>
+
+  <rect x="340" y="244" width="240" height="64" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="460" y="269" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">edit exact replacement</text>
+  <text x="460" y="290" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#d97706">old_string must match uniquely</text>
+
+  <rect x="340" y="328" width="240" height="64" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="460" y="353" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">apply_patch structured patch</text>
+  <text x="460" y="374" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#d97706">multi-file ops, two-phase</text>
+
+  <!-- column 3: verify -->
+  <rect x="632" y="160" width="240" height="64" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="752" y="185" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">test runs the tests</text>
+  <text x="752" y="206" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#d97706">keeps only the last 60 lines</text>
+
+  <rect x="632" y="244" width="240" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="752" y="269" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">shell runs commands</text>
+  <text x="752" y="290" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">bash -c · env allowlist · timeout</text>
+
+  <rect x="632" y="328" width="240" height="64" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="752" y="353" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#334155">test reuses the shell core</text>
+  <text x="752" y="374" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">output policy only (runShellCommand)</text>
+
+  <!-- loop arrow: verify → browse -->
+  <path d="M 752 392 L 752 448 L 168 448 L 168 396" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="460" y="440" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">verify fails → back to browsing to relocate (the Agent work loop)</text>
+
+  <!-- bottom note -->
+  <rect x="32" y="472" width="856" height="44" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="460" y="499" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#334155">risk drives the permission layer's defaults (Module 06): read-only low · write medium · arbitrary command high</text>
+
+  <text x="32" y="544" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 03 · the risk field of src/tools/{read,glob,grep,write,edit,apply-patch,shell,test-runner}.ts</text>
+</svg>

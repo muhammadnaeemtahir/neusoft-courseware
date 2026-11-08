@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560">
+  <rect x="0" y="0" width="960" height="560" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">WAL: why a power cut loses nothing</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- three stage headers -->
+  <rect x="60" y="88" width="220" height="32" rx="16" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="170" y="109" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">Stage 1 · write</text>
+  <rect x="370" y="88" width="220" height="32" rx="16" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="480" y="109" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#14532d">Stage 2 · commit point</text>
+  <rect x="680" y="88" width="220" height="32" rx="16" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="790" y="109" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#991b1b">Stage 3 · crash &amp; recovery</text>
+
+  <!-- ===== Stage 1: write ===== -->
+  <rect x="52" y="148" width="256" height="140" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="180" y="172" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#4c1d95">WAL log (appending)</text>
+  <rect x="64" y="188" width="70" height="36" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="99" y="211" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#4c1d95">change 1</text>
+  <rect x="142" y="188" width="70" height="36" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="177" y="211" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#4c1d95">change 2</text>
+  <rect x="220" y="188" width="70" height="36" rx="6" fill="#ffffff" stroke="#a78bfa" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text x="255" y="211" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#a78bfa">…</text>
+  <text x="180" y="252" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">new changes append here</text>
+  <text x="180" y="312" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">sequential &amp; fast: append-only</text>
+  <rect x="52" y="330" width="256" height="48" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="180" y="359" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">main file: untouched (reads not blocked)</text>
+
+  <!-- Stage 1 → Stage 2 -->
+  <line x1="314" y1="218" x2="356" y2="218" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ===== Stage 2: commit point ===== -->
+  <rect x="362" y="148" width="256" height="140" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="490" y="172" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#4c1d95">WAL log (complete)</text>
+  <rect x="374" y="188" width="70" height="36" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="409" y="211" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#4c1d95">change 1</text>
+  <rect x="452" y="188" width="70" height="36" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="487" y="211" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#4c1d95">change 2</text>
+  <rect x="530" y="188" width="70" height="36" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="565" y="211" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#4c1d95">change 3</text>
+  <rect x="374" y="236" width="232" height="36" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="490" y="259" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" font-weight="bold" fill="#14532d">✓ commit marker (commit point)</text>
+  <text x="490" y="312" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#166534">COMMIT instant = commit point: after it, all counts</text>
+  <rect x="362" y="330" width="256" height="48" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="490" y="359" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">main file: merged later by checkpoint</text>
+
+  <!-- Stage 2 → Stage 3 -->
+  <line x1="624" y1="218" x2="666" y2="218" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ===== Stage 3: power cut and recovery ===== -->
+  <text x="668" y="192" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">time</text>
+  <line x1="664" y1="210" x2="908" y2="210" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="720" y1="202" x2="720" y2="218" stroke="#16a34a" stroke-width="2"/>
+  <text x="720" y="240" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#16a34a">commit ✓</text>
+  <path d="M3 0 L-4 12 L-1 12 L-5 22 L4 9 L1 9 L5 0 Z" fill="#dc2626" transform="translate(800,180) scale(1.4)"/>
+  <text x="800" y="240" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" font-weight="bold" fill="#dc2626">power cut at any moment</text>
+  <line x1="790" y1="256" x2="790" y2="284" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="802" y="276" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">restart</text>
+  <rect x="664" y="292" width="256" height="100" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="792" y="318" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#14532d">replay from the last commit point</text>
+  <text x="792" y="344" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#166534">the main file gets complete data</text>
+  <text x="792" y="368" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" font-weight="bold" fill="#166534">complete prefix, no partial writes</text>
+
+  <!-- ===== bottom comparison ===== -->
+  <rect x="40" y="412" width="430" height="76" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="255" y="440" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#991b1b">Without WAL: editing the main file directly</text>
+  <text x="255" y="466" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#b91c1c">a power cut mid-write can leave a torn half page</text>
+
+  <rect x="490" y="412" width="430" height="76" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="705" y="440" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#14532d">With WAL: log first, effective at the commit point</text>
+  <text x="705" y="466" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#166534">power cut = replay from the last commit, always complete</text>
+
+  <text x="32" y="530" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 07 · WAL write-ahead log (2.2.5)</text>
+</svg>

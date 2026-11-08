@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 740" width="960" height="740">
+  <rect x="0" y="0" width="960" height="740" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">The Session storage model: six tables and their references</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- ===== table nodes (purple storage style) ===== -->
+  <!-- project -->
+  <rect x="60" y="100" width="240" height="94" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="180" y="124" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">project</text>
+  <line x1="72" y1="134" x2="288" y2="134" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="180" y="152" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">id PK = SHA1(path)</text>
+  <text x="180" y="168" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">path UNIQUE NOT NULL</text>
+  <text x="180" y="184" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">created_at</text>
+
+  <!-- session -->
+  <rect x="390" y="100" width="250" height="174" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="515" y="124" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">session</text>
+  <line x1="402" y1="134" x2="628" y2="134" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="515" y="152" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">id PK = sess_uuid</text>
+  <text x="515" y="168" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">project_id → project</text>
+  <text x="515" y="184" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">parent_session_id → session</text>
+  <text x="515" y="200" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">agent</text>
+  <text x="515" y="216" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">title</text>
+  <text x="515" y="232" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">status (default 'active')</text>
+  <text x="515" y="248" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">created_at</text>
+  <text x="515" y="264" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">updated_at</text>
+
+  <!-- message -->
+  <rect x="60" y="332" width="240" height="142" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="180" y="356" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">message</text>
+  <line x1="72" y1="366" x2="288" y2="366" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="180" y="384" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">id PK = msg_uuid</text>
+  <text x="180" y="400" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">session_id → session</text>
+  <text x="180" y="416" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">seq (UNIQUE with session_id)</text>
+  <text x="180" y="432" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">role (user/assistant/tool)</text>
+  <text x="180" y="448" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">parts (JSON)</text>
+  <text x="180" y="464" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">created_at</text>
+
+  <!-- tool_call -->
+  <rect x="60" y="516" width="240" height="190" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="180" y="540" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">tool_call</text>
+  <line x1="72" y1="550" x2="288" y2="550" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="180" y="568" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">id PK = toolCallId</text>
+  <text x="180" y="584" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">session_id → session</text>
+  <text x="180" y="600" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">message_id → message</text>
+  <text x="180" y="616" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">tool</text>
+  <text x="180" y="632" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">input (JSON)</text>
+  <text x="180" y="648" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">status</text>
+  <text x="180" y="664" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">result (JSON)</text>
+  <text x="180" y="680" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">created_at</text>
+  <text x="180" y="696" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">finished_at</text>
+
+  <!-- event -->
+  <rect x="720" y="100" width="210" height="126" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="825" y="124" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">event</text>
+  <line x1="732" y1="134" x2="918" y2="134" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="825" y="152" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">id PK AUTOINCREMENT</text>
+  <text x="825" y="168" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">session_id → session</text>
+  <text x="825" y="184" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">type</text>
+  <text x="825" y="200" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">payload (JSON)</text>
+  <text x="825" y="216" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">at</text>
+
+  <!-- permission_request -->
+  <rect x="720" y="300" width="210" height="174" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="825" y="324" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">permission_request</text>
+  <line x1="732" y1="334" x2="918" y2="334" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="825" y="352" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">id PK AUTOINCREMENT</text>
+  <text x="825" y="368" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">session_id → session</text>
+  <text x="825" y="384" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">tool</text>
+  <text x="825" y="400" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">resource</text>
+  <text x="825" y="416" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">decision (allow/deny/ask)</text>
+  <text x="825" y="432" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">rule</text>
+  <text x="825" y="448" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">reason</text>
+  <text x="825" y="464" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">at</text>
+
+  <!-- ===== relationship lines (cardinalities at both ends) ===== -->
+  <!-- project 1 - N session -->
+  <line x1="300" y1="146" x2="386" y2="146" stroke="#475569" stroke-width="1.5"/>
+  <text x="310" y="138" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">1</text>
+  <text x="376" y="138" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">N</text>
+  <text x="343" y="164" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">project_id</text>
+
+  <!-- session 1 - N message -->
+  <line x1="430" y1="274" x2="300" y2="388" stroke="#475569" stroke-width="1.5"/>
+  <text x="440" y="290" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">1</text>
+  <text x="306" y="380" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">N</text>
+  <text x="428" y="316" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">session_id</text>
+
+  <!-- session 1 - N event -->
+  <line x1="640" y1="150" x2="716" y2="150" stroke="#475569" stroke-width="1.5"/>
+  <text x="648" y="142" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">1</text>
+  <text x="706" y="142" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">N</text>
+  <text x="678" y="170" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">session_id</text>
+  <text x="678" y="186" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">append-only audit</text>
+
+  <!-- session 1 - N permission_request -->
+  <line x1="640" y1="240" x2="716" y2="388" stroke="#475569" stroke-width="1.5"/>
+  <text x="646" y="256" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">1</text>
+  <text x="706" y="378" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">N</text>
+  <text x="600" y="312" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">session_id</text>
+
+  <!-- message 1 - N tool_call -->
+  <line x1="180" y1="474" x2="180" y2="512" stroke="#475569" stroke-width="1.5"/>
+  <text x="192" y="492" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">1</text>
+  <text x="192" y="510" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">N</text>
+  <text x="330" y="492" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">id = toolCallId (results match back to calls)</text>
+  <text x="400" y="512" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">status: pending→success/error/denied/skipped</text>
+
+  <!-- session self-reference (child Agent sessions) -->
+  <path d="M 600 100 C 600 56 480 56 480 100" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="540" y="46" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">child Agent sessions (parent_session_id)</text>
+
+  <!-- ===== reading notes ===== -->
+  <rect x="620" y="520" width="310" height="136" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="775" y="546" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#334155">Reading notes</text>
+  <text x="775" y="570" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">message.parts stores JSON (text / tool_call)</text>
+  <text x="775" y="590" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">tool_call.id = the protocol's toolCallId</text>
+  <text x="775" y="610" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">event is INSERT-only (append-only audit stream)</text>
+  <text x="775" y="630" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">foreign keys need PRAGMA foreign_keys = ON</text>
+
+  <text x="32" y="724" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 07 · Session storage ER diagram (5.2)</text>
+</svg>

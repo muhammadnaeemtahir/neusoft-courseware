@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 380" width="860" height="380">
+<defs>
+<marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/></marker>
+<marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker>
+<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/></marker>
+<marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706"/></marker>
+<marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker>
+</defs>
+<rect x="0" y="0" width="860" height="380" fill="#ffffff"/>
+<text x="32" y="48" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Error channels: throw bubbles up vs Effect's typed E (effect-lab/compare.ts)</text>
+<text x="230" y="86" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#7f1d1d" font-weight="bold">Promise: throw</text>
+<rect x="90" y="100" width="280" height="56" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+<text x="230.0" y="124.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#7f1d1d" font-weight="bold">throw new AskError(…)</text>
+<text x="230.0" y="145.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ef4444">the error type lives only in docs</text>
+<rect x="90" y="200" width="280" height="64" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="230.0" y="228.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#334155" font-weight="bold">Bubbles up the call stack</text>
+<text x="230.0" y="249.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#64748b">a forgotten try/catch crashes — known at runtime</text>
+<line x1="230" y1="156" x2="230" y2="194" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+<text x="620" y="86" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#14532d" font-weight="bold">Effect: E channel</text>
+<rect x="480" y="100" width="280" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="620.0" y="128.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#1e3a8a" font-weight="bold">Effect&lt;A, AskError, R&gt;</text>
+<text x="620.0" y="149.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#3b82f6">failure is part of the signature</text>
+<rect x="480" y="210" width="280" height="64" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="620.0" y="238.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#14532d" font-weight="bold">askWithFallback</text>
+<text x="620.0" y="259.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#22c55e">catch failure → fallback provider</text>
+<line x1="620" y1="164" x2="620" y2="204" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+<text x="635" y="190" text-anchor="start" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">failure is a value, composable</text>
+<rect x="60" y="300" width="740" height="56" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="430.0" y="322.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#334155">Same error: left hides in the runtime (E invisible in signatures); right is visible in the type — fallback becomes composition</text>
+<text x="430.0" y="342.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#334155">catch / fallback / retry all operate on the E channel, and the compiler ensures you handled it</text>
+<text x="32" y="364" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 12 · Failure channels (5.4)</text>
+</svg>

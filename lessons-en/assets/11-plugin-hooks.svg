@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" width="960" height="660">
+  <rect x="0" y="0" width="960" height="660" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Plugin hook injection points: wraps registry.call, errors fully isolated</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- entry -->
+  <rect x="190" y="84" width="380" height="52" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="380" y="105" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">Agent Loop calls call(name, input)</text>
+  <text x="380" y="125" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b82f6">receives the wrapped ToolRegistry, unaware of plugins</text>
+
+  <!-- wrapping note (neutral) -->
+  <line x1="570" y1="110" x2="620" y2="110" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="620" y="84" width="300" height="52" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="770" y="105" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">{ ...registry, call } spread wrapper</text>
+  <text x="770" y="125" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">all other methods pass through</text>
+
+  <line x1="380" y1="136" x2="380" y2="164" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="392" y="154" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">enter the wrapped call</text>
+
+  <!-- ① beforeTool -->
+  <rect x="230" y="168" width="300" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="380" y="190" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">① host.beforeTool</text>
+  <text x="380" y="212" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b82f6">({ tool, input }) runs every plugin hook in turn</text>
+
+  <!-- isolation note (green) -->
+  <line x1="530" y1="194" x2="620" y2="194" stroke="#16a34a" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="620" y="168" width="300" height="52" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="770" y="190" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#14532d">isolated(): throws only logged as warnings</text>
+  <text x="770" y="210" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#16a34a">main flow unblocked; see host.warnings()</text>
+
+  <line x1="380" y1="224" x2="380" y2="236" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- decision: cancel? -->
+  <polygon points="380,240 470,276 380,312 290,276" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="380" y="281" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#92400e">decision.cancel ?</text>
+
+  <!-- blocked branch (red) -->
+  <line x1="470" y1="276" x2="612" y2="276" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="541" y="264" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">cancel = true</text>
+  <rect x="620" y="244" width="300" height="64" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="770" y="268" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">Tool not executed (blocked)</text>
+  <text x="770" y="290" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#ef4444">meta.cancelledByPlugin = true</text>
+
+  <line x1="380" y1="312" x2="380" y2="340" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="392" y="330" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">cancel = false</text>
+
+  <!-- ② registry.call original -->
+  <rect x="230" y="344" width="300" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="380" y="366" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">② registry.call (original)</text>
+  <text x="380" y="388" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b82f6">validate input → execute → ToolResult</text>
+
+  <line x1="380" y1="400" x2="380" y2="444" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="392" y="426" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">tool finished, result returned</text>
+
+  <!-- ③ afterTool -->
+  <rect x="230" y="448" width="300" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="380" y="470" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">③ host.afterTool</text>
+  <text x="380" y="492" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b82f6">({ tool, ok, result }) observe only, no rewrite</text>
+
+  <!-- isolation note (green) -->
+  <line x1="530" y1="474" x2="620" y2="474" stroke="#16a34a" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="620" y="448" width="300" height="52" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="770" y="470" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#14532d">isolated(): throws only logged as warnings</text>
+  <text x="770" y="490" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#16a34a">main flow unblocked; see host.warnings()</text>
+
+  <line x1="380" y1="504" x2="380" y2="548" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="392" y="530" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">return result</text>
+
+  <!-- return (green) -->
+  <rect x="230" y="552" width="300" height="56" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="380" y="574" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">Return ToolResult</text>
+  <text x="380" y="596" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#16a34a">Agent Loop still unaware of plugins</text>
+
+  <text x="32" y="634" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 11 · Plugin hooks (src/extensions/plugin.ts)</text>
+</svg>

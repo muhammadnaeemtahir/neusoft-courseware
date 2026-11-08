@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="920" height="460">
+  <rect x="0" y="0" width="920" height="460" fill="#ffffff"/>
+  <text x="32" y="44" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Double-guard timeout: abort first so cooperative tools wrap up; verdict after 20ms</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- main chain: raceTool starts → timer fires → abort → grace period -->
+  <rect x="32" y="96" width="180" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="122" y="120" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">raceTool starts</text>
+  <text x="122" y="142" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">Promise.race</text>
+
+  <rect x="252" y="96" width="180" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="342" y="120" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">timer fires</text>
+  <text x="342" y="142" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">timeoutMs elapsed</text>
+
+  <rect x="472" y="96" width="180" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="562" y="120" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">controller.abort()</text>
+  <text x="562" y="142" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">cooperative tools wrap up</text>
+
+  <rect x="692" y="96" width="196" height="64" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="790" y="120" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">start 20ms grace period</text>
+  <text x="790" y="142" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">hardTimer = 20ms</text>
+
+  <line x1="212" y1="128" x2="248" y2="128" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="432" y1="128" x2="468" y2="128" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="652" y1="128" x2="688" y2="128" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- branch one: tool finishes early (green) -->
+  <line x1="122" y1="160" x2="122" y2="236" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="132" y="202" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">exec resolves first</text>
+
+  <rect x="32" y="240" width="180" height="72" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="122" y="268" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">tool finished early</text>
+  <text x="122" y="290" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#16a34a">race won · timer cleaned up</text>
+
+  <!-- two exits after the grace period -->
+  <line x1="790" y1="160" x2="790" y2="236" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="800" y="202" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">not back in grace</text>
+
+  <rect x="692" y="240" width="196" height="72" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="790" y="268" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">forced timeout verdict</text>
+  <text x="790" y="290" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">ok:false · cancel requested</text>
+
+  <line x1="716" y1="160" x2="580" y2="236" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="648" y="190" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">tool returns in grace</text>
+
+  <rect x="380" y="240" width="250" height="72" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="505" y="268" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">adopt the tool's own result</text>
+  <text x="505" y="290" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#16a34a">cooperative shutdown honored</text>
+
+  <!-- explanation -->
+  <rect x="32" y="352" width="856" height="56" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="60" y="375" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#334155">Why a 20ms grace instead of 0: after abort, a cooperative tool still needs several microtask hops to resolve —</text>
+  <text x="60" y="394" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#334155">an instant verdict would defeat tools that could still win; hardTimer catches signal-ignoring tools — callers never hang.</text>
+
+  <text x="32" y="440" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · src/tools/registry.ts (raceTool, GRACE_MS = 20)</text>
+</svg>

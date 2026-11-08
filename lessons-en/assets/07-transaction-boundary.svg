@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600">
+  <rect x="0" y="0" width="960" height="600" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Transaction boundaries and crash safety: message and tool calls live and die together</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- ===== transaction ①: appendAssistantTurn ===== -->
+  <rect x="40" y="80" width="270" height="170" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="175" y="106" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">Transaction ①: appendAssistantTurn</text>
+  <rect x="58" y="120" width="234" height="34" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="175" y="141" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#4c1d95">1 assistant message</text>
+  <rect x="58" y="162" width="234" height="34" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="175" y="183" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#4c1d95">N tool_calls (status=pending)</text>
+  <rect x="58" y="204" width="234" height="34" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="175" y="225" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#4c1d95">session.updated_at updated</text>
+
+  <line x1="310" y1="165" x2="344" y2="165" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ===== tool execution (outside the transactions) ===== -->
+  <rect x="348" y="110" width="264" height="110" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="480" y="138" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#78350f">Tool execution (no transaction)</text>
+  <text x="480" y="162" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#b45309">write files / run commands — external</text>
+  <text x="480" y="182" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#b45309">no transaction can wrap it — nor should it</text>
+  <text x="480" y="202" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#b45309">it runs between the two transactions</text>
+
+  <line x1="612" y1="165" x2="646" y2="165" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ===== transaction ②: appendToolResult ===== -->
+  <rect x="650" y="80" width="270" height="170" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="785" y="106" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">Transaction ②: appendToolResult</text>
+  <rect x="668" y="120" width="234" height="34" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="785" y="141" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#4c1d95">1 tool result message (toolCallId)</text>
+  <rect x="668" y="162" width="234" height="34" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="785" y="183" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#4c1d95">tool_call status update (→ final)</text>
+  <rect x="668" y="204" width="234" height="34" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="785" y="225" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#4c1d95">session.updated_at updated</text>
+
+  <!-- next round -->
+  <path d="M 785 250 L 785 292 L 175 292 L 175 254" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="480" y="286" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">next assistant turn → back into Transaction ①</text>
+
+  <!-- ===== crash boundary sketch ===== -->
+  <text x="40" y="338" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#0f172a">Crash boundary: the process can lose power at any line of code</text>
+
+  <!-- 时间条 -->
+  <rect x="40" y="372" width="170" height="12" fill="#2563eb"/>
+  <rect x="210" y="372" width="290" height="12" fill="#16a34a"/>
+  <rect x="500" y="372" width="200" height="12" fill="#d97706"/>
+  <rect x="700" y="372" width="220" height="12" fill="#16a34a"/>
+
+  <!-- 断电标记（任意位置） -->
+  <path d="M3 0 L-4 12 L-1 12 L-5 22 L4 9 L1 9 L5 0 Z" fill="#dc2626" transform="translate(330,342)"/>
+  <line x1="330" y1="368" x2="330" y2="394" stroke="#dc2626" stroke-width="1" stroke-dasharray="4 3"/>
+  <path d="M3 0 L-4 12 L-1 12 L-5 22 L4 9 L1 9 L5 0 Z" fill="#dc2626" transform="translate(600,342)"/>
+  <line x1="600" y1="368" x2="600" y2="394" stroke="#dc2626" stroke-width="1" stroke-dasharray="4 3"/>
+  <path d="M3 0 L-4 12 L-1 12 L-5 22 L4 9 L1 9 L5 0 Z" fill="#dc2626" transform="translate(830,342)"/>
+  <line x1="830" y1="368" x2="830" y2="394" stroke="#dc2626" stroke-width="1" stroke-dasharray="4 3"/>
+
+  <text x="125" y="410" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">user message persisted ✓</text>
+  <text x="355" y="410" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">transaction ①: assistant + pending tool_calls ✓</text>
+  <text x="600" y="410" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">tool execution (outside)</text>
+  <text x="810" y="410" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">transaction ②: tool result + status ✓</text>
+
+  <!-- 断电结果 -->
+  <rect x="40" y="424" width="520" height="64" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="300" y="448" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#14532d">cut anywhere → the database holds the complete last boundary</text>
+  <text x="300" y="470" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#166534">never half an assistant message, never a dangling call declaration</text>
+
+  <rect x="580" y="424" width="340" height="64" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="750" y="448" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#4c1d95">cut between transactions → the pending list</text>
+  <text x="750" y="470" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6d28d9">listPendingToolCalls = the unfinished-action list</text>
+
+  <rect x="40" y="504" width="880" height="44" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="480" y="531" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#334155">pending ≠ an auto-replay signal: recovery asks the user first; writes / Shell must re-confirm permissions (never auto-retry)</text>
+
+  <text x="32" y="572" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 07 · Transaction boundaries (5.3)</text>
+</svg>

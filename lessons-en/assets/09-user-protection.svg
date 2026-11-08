@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" width="960" height="620">
+  <rect x="0" y="0" width="960" height="620" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">User change protection: restore recovers the baseline, stash is append-only</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- three swimlanes: User / Snapshot system / Agent -->
+  <rect x="95" y="76" width="150" height="40" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="170" y="101" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">User</text>
+  <rect x="395" y="76" width="150" height="40" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="470" y="101" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">Snapshot system</text>
+  <rect x="695" y="76" width="150" height="40" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="770" y="101" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">Agent</text>
+
+  <line x1="170" y1="116" x2="170" y2="520" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="470" y1="116" x2="470" y2="520" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="770" y1="116" x2="770" y2="520" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- user has uncommitted changes -->
+  <rect x="60" y="132" width="220" height="36" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="170" y="155" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#92400e">user has uncommitted changes</text>
+
+  <!-- createSnapshot -->
+  <text x="320" y="193" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">createSnapshot(workspace, sessionId)</text>
+  <line x1="178" y1="205" x2="462" y2="205" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <rect x="300" y="218" width="340" height="48" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="470" y="238" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#4c1d95">git stash push --include-untracked</text>
+  <text x="470" y="256" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#8b5cf6">user changes into stash@{0}, tree clean</text>
+
+  <!-- Agent destructive edits -->
+  <rect x="650" y="278" width="240" height="44" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="770" y="297" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#7f1d1d">Agent destructive edits</text>
+  <text x="770" y="315" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#ef4444">overwrites the working tree (task fails)</text>
+
+  <!-- restore -->
+  <text x="320" y="348" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">snapshotRestore(confirm = true)</text>
+  <line x1="178" y1="360" x2="462" y2="360" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <rect x="310" y="374" width="320" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="470" y="393" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#14532d">git checkout stash@{0} -- .</text>
+  <text x="470" y="411" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#16a34a">baseline restored: user changes come back</text>
+
+  <!-- return -->
+  <text x="320" y="436" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">restore done: working tree = baseline</text>
+  <line x1="478" y1="448" x2="178" y2="448" stroke="#475569" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-gray)"/>
+
+  <!-- stash entry still there -->
+  <rect x="310" y="470" width="320" height="44" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="470" y="489" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#4c1d95">stash entry remains (append-only)</text>
+  <text x="470" y="507" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#8b5cf6">can be checked out again</text>
+
+  <!-- ban -->
+  <line x1="480" y1="514" x2="480" y2="524" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <rect x="330" y="528" width="300" height="52" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="480" y="550" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">git reset --hard: absolutely forbidden</text>
+  <text x="480" y="570" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#ef4444">wipes all uncommitted content (incl. user changes)</text>
+
+  <text x="32" y="602" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 09 · user change protection (src/git/snapshot.ts · test/git/snapshot.test.ts)</text>
+</svg>

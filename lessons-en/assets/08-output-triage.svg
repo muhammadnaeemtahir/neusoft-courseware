@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 380" width="860" height="380">
+<defs>
+<marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/></marker>
+<marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker>
+<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/></marker>
+<marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706"/></marker>
+<marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker>
+</defs>
+<rect x="0" y="0" width="860" height="380" fill="#ffffff"/>
+<text x="32" y="48" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Tool output triage: keep / truncate / summarize (truncate.ts + compaction)</text>
+<rect x="60" y="130" width="170" height="70" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="145.0" y="161.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#1e3a8a" font-weight="bold">Tool output</text>
+<text x="145.0" y="182.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#3b82f6">can be huge</text>
+<polygon points="380,123.0 475.0,165 380,207.0 285.0,165" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+<text x="380" y="163" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#78350f" font-weight="bold">Length check</text>
+<text x="380" y="181" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#f59e0b">≤ maxOutputChars (20k)</text>
+<rect x="620" y="70" width="210" height="56" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="725.0" y="94.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#14532d" font-weight="bold">Into history as-is</text>
+<text x="725.0" y="115.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#22c55e">small output, kept whole</text>
+<rect x="620" y="170" width="210" height="66" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+<text x="725.0" y="199.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#78350f" font-weight="bold">Truncate + hint</text>
+<text x="725.0" y="220.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#f59e0b">'original N chars… narrow the query'</text>
+<rect x="620" y="280" width="210" height="60" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="725.0" y="306.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#4c1d95" font-weight="bold">Summary (compaction)</text>
+<text x="725.0" y="327.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#8b5cf6">aged output handled by module 8.5</text>
+<line x1="230" y1="165" x2="283" y2="165" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="475" y1="140" x2="614" y2="98" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+<text x="545" y="110" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">small</text>
+<line x1="475" y1="170" x2="614" y2="190" stroke="#d97706" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+<text x="545" y="196" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">large</text>
+<line x1="430" y1="207" x2="610" y2="296" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+<text x="490" y="262" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">as history ages</text>
+<text x="430" y="366" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">TRUNCATION_HINT is appended — the model is told what happened and what to do, never silently clipped</text>
+<text x="32" y="364" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 08 · Output triage (5.4)</text>
+</svg>

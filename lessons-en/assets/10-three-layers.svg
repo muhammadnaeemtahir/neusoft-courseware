@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" width="960" height="620">
+  <rect x="0" y="0" width="960" height="620" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Three-layer defense: if one layer is bypassed, the next still blocks</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- attack source -->
+  <rect x="140" y="80" width="320" height="60" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="300" y="105" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">Child Agent's model requests write</text>
+  <text x="300" y="127" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#ef4444">registry shared parent/child; write still registered</text>
+
+  <line x1="300" y1="140" x2="300" y2="175" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-red)"/>
+
+  <!-- Layer 1 -->
+  <rect x="60" y="175" width="480" height="72" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="300" y="199" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">Layer 1 allowedTools (model layer)</text>
+  <text x="300" y="220" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">tools list sent to the model is allowlist-filtered</text>
+  <text x="300" y="238" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">→ the model cannot even see write tools</text>
+
+  <line x1="300" y1="247" x2="300" y2="282" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-red)"/>
+  <text x="312" y="270" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#dc2626">if bypassed: model hallucinates a hard call to write</text>
+
+  <!-- Layer 2 -->
+  <rect x="60" y="282" width="480" height="72" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="300" y="306" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">Layer 2 readOnlyAgents (runtime layer)</text>
+  <text x="300" y="327" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#d97706">permission check: read-only role + risk ≠ low → deny</text>
+  <text x="300" y="345" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#d97706">deny wins over configured allow (evaluate.ts rule 2)</text>
+
+  <line x1="300" y1="354" x2="300" y2="389" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-red)"/>
+  <text x="312" y="377" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#dc2626">if bypassed: spawning new agents allowed</text>
+
+  <!-- Layer 3 -->
+  <rect x="60" y="389" width="480" height="72" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="300" y="413" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#334155">Layer 3 recursion ban (structural layer)</text>
+  <text x="300" y="434" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">task is in no child Agent's allowedTools list</text>
+  <text x="300" y="452" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">DELEGATABLE_AGENTS does not include build</text>
+
+  <line x1="300" y1="461" x2="300" y2="496" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-red)"/>
+
+  <!-- result -->
+  <rect x="140" y="496" width="320" height="60" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="300" y="521" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">Write denied · evil.ts does not exist</text>
+  <text x="300" y="543" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#22c55e">asserted in test/agent/multi.test.ts</text>
+
+  <!-- right: what happens when bypassed -->
+  <rect x="580" y="175" width="350" height="72" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="600" y="199" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" font-weight="bold" fill="#334155">If bypassed ↓</text>
+  <text x="600" y="220" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">write is still in the shared registry; the model may</text>
+  <text x="600" y="238" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">still hallucinate a call → Layer 2 permission check blocks</text>
+
+  <rect x="580" y="282" width="350" height="72" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="600" y="306" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" font-weight="bold" fill="#334155">If bypassed ↓</text>
+  <text x="600" y="327" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">if task were in a child's tool list, it could spawn</text>
+  <text x="600" y="345" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">a full-permission copy, nested → Layer 3 structure blocks</text>
+
+  <rect x="580" y="389" width="350" height="72" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="600" y="413" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" font-weight="bold" fill="#334155">If bypassed ↓</text>
+  <text x="600" y="434" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">roles = data: a new role is one added definition;</text>
+  <text x="600" y="452" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">delegable range and read-only list auto-constrain it</text>
+
+  <line x1="540" y1="211" x2="580" y2="211" stroke="#475569" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-gray)"/>
+  <line x1="540" y1="318" x2="580" y2="318" stroke="#475569" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-gray)"/>
+  <line x1="540" y1="425" x2="580" y2="425" stroke="#475569" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-gray)"/>
+
+  <text x="480" y="585" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">Defense in depth: any single mechanism has blind spots; critical resources need multiple layers (tool visibility / permission runtime / recursion ban)</text>
+
+  <text x="32" y="612" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 10 · Three-layer defense (src/agent/definitions.ts · src/permission/evaluate.ts · src/tools/task.ts)</text>
+</svg>

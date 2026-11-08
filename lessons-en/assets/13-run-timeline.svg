@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="960" height="500">
+  <rect x="0" y="0" width="960" height="500" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">run() execution timeline: the eight steps of one task (real application.ts order)</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Row 1: steps 1-4 -->
+  <rect x="32" y="96" width="200" height="88" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="132" y="122" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">① recoverSession</text>
+  <text x="132" y="144" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">load history + pending list</text>
+  <text x="132" y="166" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">only on --session resume</text>
+
+  <line x1="234" y1="140" x2="258" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <rect x="264" y="96" width="200" height="88" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="364" y="122" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">② Compact + trim</text>
+  <text x="364" y="144" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">compactMessages folding</text>
+  <text x="364" y="166" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">prepareContext budget trim [08]</text>
+
+  <line x1="466" y1="140" x2="490" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <rect x="496" y="96" width="200" height="88" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="596" y="122" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#4c1d95">③ Create/resume session</text>
+  <text x="596" y="144" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#8b5cf6">SQLite sessions.db</text>
+  <text x="596" y="166" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">reuse or create a session [07]</text>
+
+  <line x1="698" y1="140" x2="722" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <rect x="728" y="96" width="200" height="88" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="828" y="122" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">④ createSnapshot</text>
+  <text x="828" y="144" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">pre-change snapshot (Git stash)</text>
+  <text x="828" y="166" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">auto-degrades outside Git [09]</text>
+
+  <!-- line-wrap connector -->
+  <polyline points="828,186 828,238 132,238 132,286" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- Row 2: steps 5-8 -->
+  <rect x="32" y="292" width="200" height="88" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="132" y="318" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#92400e">⑤ Gate · built per run</text>
+  <text x="132" y="340" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#d97706">dual audit · no responder → deny</text>
+  <text x="132" y="362" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">JSONL + permission_request [06]</text>
+
+  <line x1="234" y1="336" x2="258" y2="336" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <rect x="264" y="292" width="200" height="88" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="364" y="318" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">⑥ runAgent</text>
+  <text x="364" y="340" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">Agent loop: model ↔ tool cycle</text>
+  <text x="364" y="362" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">tool calls pass the gate first [04]</text>
+
+  <line x1="466" y1="336" x2="490" y2="336" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <rect x="496" y="292" width="200" height="88" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="596" y="318" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">⑦ snapshotDiff</text>
+  <text x="596" y="340" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">vs pre-change snapshot → diff</text>
+  <text x="596" y="362" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">changedFiles list [09]</text>
+
+  <line x1="698" y1="336" x2="722" y2="336" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <rect x="728" y="292" width="200" height="88" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="828" y="318" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#14532d">⑧ RunOutcome</text>
+  <text x="828" y="340" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#22c55e">finalText · diff · sessionId</text>
+  <text x="828" y="362" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">changedFiles · task status</text>
+
+  <!-- bottom ordering constraints -->
+  <rect x="32" y="408" width="896" height="40" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="480" y="433" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">Ordering: session before gate (audit carries session id) · snapshot before first write (diff needs baseline) · diff once after runAgent ends</text>
+
+  <text x="32" y="478" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 13 · run() execution timeline (src/app/application.ts)</text>
+</svg>

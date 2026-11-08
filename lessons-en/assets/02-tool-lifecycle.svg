@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 700" width="960" height="700">
+  <rect x="0" y="0" width="960" height="700" fill="#ffffff"/>
+  <text x="32" y="44" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Tool call lifecycle: outside registration, every failure reduces to a ToolResult</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- top: register → discover → model generates args -->
+  <rect x="32" y="76" width="272" height="60" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="168" y="98" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">① register</text>
+  <text x="168" y="120" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">name [a-z0-9_] · duplicates throw</text>
+
+  <rect x="334" y="76" width="272" height="60" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="470" y="98" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">② toModelTools discovery</text>
+  <text x="470" y="120" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">builds the tools array (allowlist filter)</text>
+
+  <rect x="636" y="76" width="272" height="60" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="772" y="98" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">③ model generates JSON args</text>
+  <text x="772" y="120" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">input: unknown, untrusted</text>
+
+  <line x1="306" y1="106" x2="330" y2="106" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="608" y1="106" x2="632" y2="106" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- model args enter registry.call -->
+  <path d="M 772 136 L 772 158 L 520 158 L 520 178" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- registry.call container -->
+  <rect x="32" y="182" width="576" height="396" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="48" y="206" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#334155">registry.call(name, input) — src/tools/registry.ts</text>
+
+  <!-- main chain, three steps -->
+  <rect x="72" y="224" width="300" height="54" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="222" y="246" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">look up tools.get(name)</text>
+  <text x="222" y="266" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">emits tool_call_requested on entry</text>
+
+  <rect x="72" y="312" width="300" height="54" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="222" y="334" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">validateInput runtime validation</text>
+  <text x="222" y="354" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">tool_started only fires after validation</text>
+
+  <rect x="72" y="400" width="300" height="54" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="222" y="422" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">raceTool runs execute</text>
+  <text x="222" y="442" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">30s timeout + abort signal race</text>
+
+  <!-- success (green) -->
+  <rect x="72" y="492" width="300" height="54" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="222" y="514" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">success ok:true</text>
+  <text x="222" y="534" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#16a34a">applyTruncation clamps the output</text>
+
+  <line x1="222" y1="278" x2="222" y2="308" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="222" y1="366" x2="222" y2="396" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="222" y1="454" x2="222" y2="488" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="232" y="476" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">normal return</text>
+
+  <!-- four failure paths (red) -->
+  <rect x="648" y="224" width="272" height="54" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="784" y="246" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">unknown tool</text>
+  <text x="784" y="266" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">error lists the available tools</text>
+
+  <rect x="648" y="312" width="272" height="54" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="784" y="334" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">validation failed</text>
+  <text x="784" y="354" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">per-field Chinese errors[]</text>
+
+  <rect x="648" y="400" width="272" height="54" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="784" y="422" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">execution threw</text>
+  <text x="784" y="442" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">throw → ok:false + error text</text>
+
+  <rect x="648" y="492" width="272" height="54" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="784" y="514" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">execution timeout</text>
+  <text x="784" y="534" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#ef4444">ok:false · tool execution timed out</text>
+
+  <!-- branches from main chain to failure paths -->
+  <line x1="372" y1="251" x2="644" y2="251" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="508" y="243" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">tool not in registry</text>
+
+  <line x1="372" y1="339" x2="644" y2="339" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="508" y="331" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">errors non-empty</text>
+
+  <line x1="372" y1="427" x2="644" y2="427" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="508" y="419" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">promise reject</text>
+
+  <line x1="372" y1="443" x2="644" y2="519" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="508" y="468" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">still no return after 20ms grace</text>
+
+  <!-- converge into ToolResult -->
+  <line x1="222" y1="546" x2="222" y2="624" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="784" y1="546" x2="784" y2="624" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <path d="M 920 251 L 936 251 L 936 596 L 848 596 L 848 624" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="920" y1="339" x2="936" y2="339" stroke="#475569" stroke-width="1.5"/>
+  <line x1="920" y1="427" x2="936" y2="427" stroke="#475569" stroke-width="1.5"/>
+
+  <!-- ToolResult unified reduction -->
+  <rect x="32" y="628" width="896" height="52" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="480" y="648" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#4c1d95">ToolResult { ok, content, error? }</text>
+  <text x="480" y="669" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#8b5cf6">single exit: serialized into a tool message back to the model — errors are results too; the model self-corrects next turn</text>
+
+  <text x="32" y="694" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · src/tools/registry.ts (register / toModelTools / call / raceTool)</text>
+</svg>

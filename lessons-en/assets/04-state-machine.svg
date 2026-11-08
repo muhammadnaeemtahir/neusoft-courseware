@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 780" width="960" height="780">
+  <rect x="0" y="0" width="960" height="780" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Agent Loop state machine: one ReAct cycle, four terminal states (src/agent/loop.ts)</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <!-- ===== row 1: Idle → PreparingContext → CallingModel → ReceivingStream ===== -->
+  <rect x="40" y="90" width="170" height="56" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="125" y="113" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#334155">Idle</text>
+  <text x="125" y="133" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">idle · awaiting a task</text>
+
+  <rect x="276" y="90" width="170" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="361" y="113" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">PreparingContext</text>
+  <text x="361" y="133" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b82f6">assemble request context</text>
+
+  <rect x="512" y="90" width="170" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="597" y="113" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">CallingModel</text>
+  <text x="597" y="133" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b82f6">call the model stream()</text>
+
+  <rect x="748" y="90" width="170" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="833" y="113" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">ReceivingStream</text>
+  <text x="833" y="133" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b82f6">receive streamed response</text>
+
+  <line x1="210" y1="118" x2="276" y2="118" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="243" y="110" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">start run</text>
+  <line x1="446" y1="118" x2="512" y2="118" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="479" y="110" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">ctx ready</text>
+  <line x1="682" y1="118" x2="748" y2="118" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="715" y="110" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">send request</text>
+
+  <!-- ===== serpentine descent: ReceivingStream → ToolCallPending ===== -->
+  <line x1="833" y1="146" x2="833" y2="290" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="843" y="250" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">args reassembled</text>
+
+  <!-- ===== row 2 (right → left): ToolCallPending → AwaitingPermission → ExecutingTool → AppendingResult ===== -->
+  <rect x="720" y="290" width="170" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="805" y="313" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">ToolCallPending</text>
+  <text x="805" y="333" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b82f6">tool calls to dispatch</text>
+
+  <rect x="500" y="290" width="190" height="56" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="595" y="313" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">AwaitingPermission</text>
+  <text x="595" y="333" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#d97706">awaiting verdict (optional)</text>
+
+  <rect x="280" y="290" width="170" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="365" y="313" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">ExecutingTool</text>
+  <text x="365" y="333" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b82f6">execute tool</text>
+
+  <rect x="70" y="290" width="170" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="155" y="313" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1e3a8a">AppendingResult</text>
+  <text x="155" y="333" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b82f6">append result to messages</text>
+
+  <line x1="720" y1="318" x2="690" y2="318" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="700" y="370" text-anchor="end" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">has tool_calls</text>
+  <line x1="500" y1="318" x2="450" y2="318" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="475" y="370" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">allow</text>
+  <line x1="280" y1="318" x2="240" y2="318" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="260" y="370" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">tool result (ok/fail)</text>
+
+  <!-- permission deny → feed the denial straight back (top of AppendingResult) -->
+  <path d="M 530 346 L 530 400 L 110 400 L 110 290" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="320" y="392" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">deny → return denial reason</text>
+
+  <!-- ===== the visible loop back: AppendingResult → CallingModel ===== -->
+  <path d="M 70 318 L 42 318 L 42 163 L 530 163 L 530 146" fill="none" stroke="#2563eb" stroke-width="2.25" marker-end="url(#arrow-blue)"/>
+  <text x="286" y="196" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" font-weight="bold" fill="#2563eb">loop back: next turn after results</text>
+
+  <!-- ===== provider error: CallingModel → Failed (two small hop arcs over crossings) ===== -->
+  <path d="M 512 135 L 478 135 L 478 171 A 8 8 0 0 1 478 155 L 478 408 A 8 8 0 0 1 478 392 L 478 585" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="488" y="560" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">Provider error → run_failed</text>
+
+  <!-- ===== MaxSteps：AppendingResult → MaxSteps ===== -->
+  <path d="M 75 346 L 75 662 L 695 662 L 695 624 L 715 624" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="85" y="480" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">turns ≥ maxSteps</text>
+
+  <!-- ===== aborted checkpoint ①: top of the loop ===== -->
+  <circle cx="42" cy="240" r="3.5" fill="#475569"/>
+  <path d="M 42 240 L 20 240 L 20 712 L 600 712 L 600 650" fill="none" stroke="#d97706" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="255" y="728" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">① signal.aborted (between turns)</text>
+
+  <!-- ===== aborted checkpoint ②: before each tool runs ===== -->
+  <path d="M 860 346 L 860 712 L 660 712 L 660 650" fill="none" stroke="#d97706" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="655" y="728" text-anchor="start" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">② signal.aborted (before tool exec)</text>
+
+  <!-- ===== loop guard: ToolCallPending → Failed ===== -->
+  <path d="M 840 346 L 840 700 L 380 700 L 380 650" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="830" y="500" text-anchor="end" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">loop guard: 3 identical calls</text>
+
+  <!-- ===== no tool calls: ToolCallPending → Completed ===== -->
+  <path d="M 880 346 L 880 740 L 165 740 L 165 650" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="525" y="758" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">no tool calls (text only) → run_completed</text>
+
+  <!-- ===== the four terminal states ===== -->
+  <rect x="90" y="585" width="150" height="65" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="165" y="607" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#14532d">Completed</text>
+  <text x="165" y="625" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#22c55e">text-only finish</text>
+  <text x="165" y="641" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#22c55e">run_completed</text>
+
+  <rect x="270" y="585" width="215" height="65" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="377" y="607" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#7f1d1d">Failed</text>
+  <text x="377" y="625" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#ef4444">Provider error / loop guard</text>
+  <text x="377" y="641" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#ef4444">run_failed</text>
+
+  <rect x="515" y="585" width="170" height="65" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="600" y="607" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#78350f">Aborted</text>
+  <text x="600" y="625" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#d97706">signal checkpoints ×2</text>
+  <text x="600" y="641" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#d97706">run_aborted</text>
+
+  <rect x="715" y="585" width="110" height="65" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="770" y="607" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#334155">MaxSteps</text>
+  <text x="770" y="625" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">out of steps</text>
+  <text x="770" y="641" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">run_max_steps</text>
+
+  <text x="32" y="768" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 04 · State machine &amp; events (5.2)</text>
+</svg>

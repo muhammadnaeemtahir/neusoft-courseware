@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 470" width="860" height="470">
+<defs>
+<marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/></marker>
+<marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker>
+<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/></marker>
+<marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706"/></marker>
+<marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker>
+</defs>
+<rect x="0" y="0" width="860" height="470" fill="#ffffff"/>
+<text x="32" y="48" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Async patterns &amp; cancellation: sync blocking, Promise/await, AsyncIterable</text>
+<rect x="60" y="90" width="150" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="135.0" y="114.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#1e3a8a" font-weight="bold">Call readBigFile()</text>
+<text x="135.0" y="135.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#3b82f6">synchronous API</text>
+<rect x="250" y="98" width="260" height="40" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="380" y="123" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#78350f">Waiting 300ms — thread suspended</text>
+<rect x="550" y="90" width="130" height="56" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="615.0" y="123.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#334155" font-weight="bold">Got result</text>
+<line x1="210" y1="118" x2="244" y2="118" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="510" y1="118" x2="544" y2="118" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<text x="700" y="118" text-anchor="start" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">time-to-result = full duration</text>
+<rect x="60" y="190" width="150" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="135.0" y="214.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#1e3a8a" font-weight="bold">Start fetchPromise()</text>
+<text x="135.0" y="235.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#3b82f6">returns a Promise now</text>
+<rect x="270" y="190" width="170" height="56" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="355.0" y="214.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#334155" font-weight="bold">Keep working</text>
+<text x="355.0" y="235.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#64748b">not blocked on network</text>
+<rect x="480" y="198" width="120" height="40" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="540" y="223" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#1e3a8a">await resume point</text>
+<rect x="640" y="190" width="130" height="56" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="705.0" y="223.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#14532d" font-weight="bold">Got result</text>
+<line x1="210" y1="218" x2="264" y2="218" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="440" y1="218" x2="474" y2="218" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="600" y1="218" x2="634" y2="218" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<rect x="60" y="290" width="150" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="135.0" y="314.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#1e3a8a" font-weight="bold">Start stream()</text>
+<text x="135.0" y="335.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#3b82f6">AsyncIterable</text>
+<rect x="270" y="290" width="80" height="56" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="310.0" y="323.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#14532d" font-weight="bold">chunk1</text>
+<rect x="370" y="290" width="80" height="56" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="410.0" y="323.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#14532d" font-weight="bold">chunk2</text>
+<rect x="470" y="290" width="80" height="56" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="510.0" y="323.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#14532d" font-weight="bold">chunk3</text>
+<rect x="590" y="290" width="90" height="56" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="635.0" y="323.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#334155" font-weight="bold">done</text>
+<line x1="210" y1="318" x2="264" y2="318" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="350" y1="318" x2="364" y2="318" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="450" y1="318" x2="464" y2="318" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<line x1="550" y1="318" x2="584" y2="318" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+<text x="700" y="318" text-anchor="start" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">each chunk handled on arrival</text>
+<rect x="60" y="382" width="740" height="56" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text x="430.0" y="404.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#334155">Cancellation: AbortController.signal is checked at checkpoints — aborted stops the run (Ch.4 signal.aborted)</text>
+<text x="430.0" y="424.0" text-anchor="middle" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#334155">break / abort on an AsyncIterable runs finally &amp; cleanup at once — no waiting for the stream to end</text>
+<text x="32" y="454" font-family="system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 00 · Async patterns (2.2.2 / 5.2)</text>
+</svg>

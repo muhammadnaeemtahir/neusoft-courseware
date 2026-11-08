@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" width="920" height="560">
+  <rect x="0" y="0" width="920" height="560" fill="#ffffff"/>
+  <text x="32" y="48" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Event loop: the microtask queue must fully drain between macrotask ticks</text>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- three columns: call stack / macrotask queue / microtask queue -->
+  <rect x="32" y="84" width="256" height="170" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="160" y="108" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">Call stack (sync execution)</text>
+  <rect x="52" y="124" width="216" height="34" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2"/>
+  <text x="160" y="146" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#1e3a8a">console.log("同步代码")</text>
+  <text x="160" y="190" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">Sync code runs on the stack</text>
+  <text x="160" y="214" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">Stack empty = this tick ends</text>
+
+  <rect x="332" y="84" width="256" height="170" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="460" y="108" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#334155">Macrotask queue</text>
+  <text x="460" y="126" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">setTimeout / IO callbacks</text>
+  <rect x="352" y="140" width="216" height="30" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="460" y="160" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">setTimeout callback</text>
+  <rect x="352" y="178" width="216" height="30" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="460" y="198" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">IO completion callback</text>
+  <text x="460" y="236" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">One per tick</text>
+
+  <rect x="632" y="84" width="256" height="170" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="760" y="108" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">Microtask queue</text>
+  <text x="760" y="126" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b82f6">Promise.then callbacks</text>
+  <rect x="652" y="140" width="216" height="30" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2"/>
+  <text x="760" y="160" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#1e40af">then hop 1</text>
+  <rect x="652" y="178" width="216" height="30" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2"/>
+  <text x="760" y="198" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#1e40af">then hop 2</text>
+  <text x="760" y="236" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#1e3a8a">Must all drain within the tick</text>
+
+  <!-- the loop, three steps -->
+  <rect x="32" y="292" width="170" height="48" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="117" y="321" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#334155">① Call stack empty</text>
+
+  <rect x="282" y="292" width="236" height="48" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="400" y="321" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#1e3a8a">② Drain all microtasks first</text>
+
+  <rect x="588" y="292" width="230" height="48" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="703" y="321" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#334155">③ Run one macrotask</text>
+
+  <line x1="206" y1="316" x2="276" y2="316" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="522" y1="316" x2="582" y2="316" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <path d="M 703 344 L 703 368 L 117 368 L 117 350" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <text x="410" y="362" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">and repeat: drain microtasks again → take one more macrotask…</text>
+
+  <!-- minimal example -->
+  <rect x="32" y="392" width="856" height="118" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="48" y="416" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" font-weight="bold" fill="#334155">Minimal example: output order = ① sync → ② micro 1 → ③ micro 2 → ④ macrotask</text>
+  <text x="872" y="416" text-anchor="end" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">each .then adds one microtask hop</text>
+
+  <text x="56" y="441" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#0f172a">setTimeout(() =&gt; console.log("宏任务"), 0)</text>
+  <text x="560" y="441" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">// ④ macrotask: runs last</text>
+  <text x="56" y="461" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#1d4ed8">Promise.resolve().then(() =&gt; console.log("微 1"))</text>
+  <text x="560" y="461" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#2563eb">// ② microtask: right after sync code</text>
+  <text x="56" y="481" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#1d4ed8">  .then(() =&gt; console.log("微 2"))</text>
+  <text x="560" y="481" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#2563eb">// ③ microtask: the second hop</text>
+  <text x="56" y="501" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#0f172a">console.log("同步代码")</text>
+  <text x="560" y="501" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">// ① runs first</text>
+
+  <text x="32" y="540" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#94a3b8">opencode-lab · Module 02 · Event loop and microtasks (2.2.3)</text>
+</svg>
